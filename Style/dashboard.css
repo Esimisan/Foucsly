@@ -1,0 +1,96 @@
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.side-nav{
+  height: 100%;
+  width: 9em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #171515;
+  padding-top: 0.7em;
+}
+
+.side-nav p{
+  color: #ddd;
+  font-size: 1.2em;
+  margin: 1.2em 0.9em;
+
+}
+
+.side-nav ul{
+  list-style-type: none;
+  margin: 0.9em;
+  padding: 0;
+}
+
+.side-nav li{
+  margin: 0;
+}
+
+.side-nav a{
+  display: block;
+  padding: 0.6em, 1em;
+  text-decoration: none;
+  font-size: 0.8em;
+  color: #ddd;
+  margin-bottom: 1.2em;
+}
+
+.side-nav a:hover {
+  background-color: #575757;
+  color: white;
+}
+
+.main{
+  margin-left: 15em;
+  padding: 2em;
+}
+ 
+.today-reminders{
+  display: flex;
+  gap: 3rem;
+  width: 80vw;
+  margin: auto;
+  padding: 1rem;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+
+.reminder-cards{
+  display: flex;
+  gap: 5rem;
+  width: 80vw;
+  margin: auto;
+  padding: 2rem;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-tasks{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+section{
+  width: 40%;
+  background: #f9f9f9;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgbe(0, 0, 0, 1);
+}
+
+section h4{
+  margin-top: 0;
+}
+
+.dashboard-short-tasks, .dashboard-long-goals{
+  margin-bottom: 0.8em;
+  padding: 0.6em;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

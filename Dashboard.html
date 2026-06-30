@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="Style/dashboard.css">
+</head>
+<body>
+  
+  <div class="side-nav">
+    <p class="logo">Focusly</p>
+    <ul>
+      <li><a href="dashboard.html">DashBoard</a></li>
+      <li><a href="tasks.html">My Tasks</a></li>
+      <li><a href="goals.html">My Goals</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="reminders.html">Reminders</a></li>
+      <li><a href="settings.html">Settings</a></li>
+    </ul>
+  </div>
+
+  <main class="main">
+  <div>
+    <p id="welcome-msg" class="welcome-msg">Good Afternoon, Misan</p>
+  </div>
+
+  <div id="current-date" class="date">
+    <p id="current-month">Thursday, June 18, 2026
+  </div>
+
+  <div class="today-reminders">
+    <h5>Today Reminders</h5>
+    <p class="daily-reminders">Morning run - 6:30 am</p>
+    <p class="daily-reminders">Budget report - 9 am</p>
+    <p class="close-daily-reminders"></p>
+  </div>
+    
+  <div class="reminder-cards">
+    <div class="due-day">
+      <h3 class="amount">0</h3>
+      <p>Due Today</p>
+    </div>
+    <div class="overdue">
+      <h3 class="amount">0</h3>
+      <p>Overdue</p>
+    </div>
+
+    <div class="goals-in-progress">
+      <h3 class="amount">0</h3>
+      <p>Goals in progess</p>
+    </div>
+    <div class="week completion">
+      <h3 class="amount">0</h3>
+      <p>Completed this week</p>
+    </div>
+  </div>
+
+    <div class="dashboard-tasks">
+      <section>
+        
+      <h4>Short Term Tasks</h4>
+      <div class="dashboard-short-tasks">
+       <h5 class="card-header">Prepare Q3 budget report</h5>
+       <p class="card-date">Jun 17</p>
+       </div>
+      <div class="dashboard-short-tasks">
+       <h5 class="card-header">6am Morning run</h5>
+       <p class="card-date">Jun 17</p>
+       </div>
+      <div class="dashboard-short-tasks">
+       <h5 class="card-header">Meal prep for the week</h5>
+       <p class="card-date">Jun 17</p>
+       </div>
+       </section>
+      </div>
+
+      <section>
+       <h4>Long Term Goals</h4>
+       <div class="dashboard-long-goals">
+         <h5 class="card-header">Lunch freelance portfolio website</h5>
+         <p class="card-date">Jun 17</p>
+       </div>
+       <div class="dashboard-long-goals">
+         <h5 class="card-header">Read 24 books this year</h5>
+         <p class="card-date">Jun 17</p>
+       </div>
+       <div class="dashboard-long-goals">
+         <h5 class="card-header">save emergency forms</h5>
+         <p class="card-date">Jun 17</p>
+       </div>
+       </div>
+      </section>
+    </div>
+
+
+
+
+
+
+  </main>
+
+  <script src="script/dashboard.js"></script>
+</body>
+</html>
