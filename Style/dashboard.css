@@ -73,24 +73,28 @@ body{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 2rem;
 }
 
 section{
-  width: 40%;
+  flex: 1;
+  width: 35rem;
   background: #f9f9f9;
-  padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgbe(0, 0, 0, 1);
+  padding: 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }
 
 section h4{
   margin-top: 0;
+  font-size: 1.2rem;
 }
 
 .dashboard-short-tasks, .dashboard-long-goals{
-  margin-bottom: 0.8em;
-  padding: 0.6em;
+  margin-bottom: 1rem;
+  padding: 0.7rem;
   background: #fff;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
 }

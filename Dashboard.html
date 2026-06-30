@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="Style/dashboard.css">
+  <link rel="stylesheet" href="style/dashboard.css">
 </head>
 <body>
   
@@ -58,7 +58,7 @@
 
     <div class="dashboard-tasks">
       <section>
-        
+
       <h4>Short Term Tasks</h4>
       <div class="dashboard-short-tasks">
        <h5 class="card-header">Prepare Q3 budget report</h5>
@@ -73,7 +73,7 @@
        <p class="card-date">Jun 17</p>
        </div>
        </section>
-      </div>
+      
 
       <section>
        <h4>Long Term Goals</h4>
@@ -94,6 +94,54 @@
     </div>
 
 
+   <section>
+    <button class="plus-btn js-open-modal">+</button>
+
+    <div class="modal js-modal">
+     <div class="modal-content">
+      <span class="close-modal js-close-modal">&times;</span>
+      <h2>New Item</h2>
+
+      <form>
+        <label>Title:</label><br>
+        <input type="text" name="title" class="js-title" placeholder="What do you want to acccomplish?"><br><br>
+
+        <label>Description:</label><br>
+        <textarea name="description" class="js-descriptioin" placeholder="Add detais, context or notes..."></textarea><br><br>
+
+        <label>Due Date</label><br>
+        <input type="date" name="due" class="js-date" placeholder="Select a date"><br><br>
+
+        <label>Priority:</label><br>
+        <select name="select-priority" class="js-priroity">
+          <option value="high">High</option>
+          <option value="medium" selected>Medium</option>
+          <option value="low">Low</option>
+        </select><br><br>
+
+        <label>Category</label><br>
+        <select name="category" class="js-tasks-category">
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="finance">Finance</option>
+          <option value="learning">Learning</option>
+          <option value="create-option">+ Create custom...</option>
+        </select><br><br>
+
+        <label>Duration</label><br>
+        <select name="duration" class="js-tasks-duration">
+          <option>Under 1 month - Task</option>
+          <option>1 - 3 months - Short Goal</option>
+          <option>3+ months - Long Term Goal</option>
+        </select>
+
+        <button type="submit">Create Task</button>
+      </form>
+     </div>
+    </div>
+
+
+   </section>
 
 
 
