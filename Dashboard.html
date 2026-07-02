@@ -105,23 +105,24 @@
 
       <form>
         <label>Title:</label><br>
-        <input type="text" name="title" class="js-title" placeholder="What do you want to acccomplish?"><br><br>
+        <input type="text" name="title" class="title js-title" placeholder="What do you want to acccomplish?"><br><br>
 
         <label>Description:</label><br>
-        <textarea name="description" class="js-descriptioin" placeholder="Add detais, context or notes..."></textarea><br><br>
+        <textarea name="description" class=" description js-description" placeholder="Add detais, context or notes..."></textarea><br><br>
 
-        <label>Due Date</label><br>
-        <input type="date" name="due" class="js-date" placeholder="Select a date"><br><br>
+        <label>Due Date & Time</label><br>
+        <input type="date" name="due" class="date js-date" placeholder="Select a date">
+        <input type="time" name="due-time" class="time js-time"><br><br>
 
         <label>Priority:</label><br>
-        <select name="select-priority" class="js-priroity">
+        <select name="select-priority" class="js-priority">
           <option value="high">High</option>
           <option value="medium" selected>Medium</option>
           <option value="low">Low</option>
         </select><br><br>
 
         <label>Category</label><br>
-        <select name="category" class="js-tasks-category">
+        <select name="category" class="js-task-category">
           <option value="work">Work</option>
           <option value="personal">Personal</option>
           <option value="finance">Finance</option>
@@ -130,13 +131,13 @@
         </select><br><br>
 
         <label>Duration</label><br>
-        <select name="duration" class="js-tasks-duration">
+        <select name="duration" class="js-task-duration">
           <option>Under 1 month - Task</option>
           <option>1 - 3 months - Short Goal</option>
           <option>3+ months - Long Term Goal</option>
         </select><br><br>
 
-        <button type="submit">Create Task</button>
+        <button type="button" class="js-create-task">Create Task</button>
       </form>
      </div>
     </div>
