@@ -49,14 +49,79 @@ body{
   padding: 2em;
 }
  
+.welcome-msg{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+.current-date{
+  font-weight: 10;
+  color: rgb(92, 92, 92);
+  margin-top: 0;
+}
+
 .today-reminders{
   display: flex;
   gap: 3rem;
   width: 80vw;
   margin: auto;
-  padding: 1rem;
+  padding: 0.3em 0.5em;
   margin-top: .5rem;
   margin-bottom: 1rem;
+  margin-right: 1rem;
+  background-color: rgba(255, 249, 196, 0.5);
+  border: 0.1em solid #f0e68c;
+  border-radius: 0.5em;
+  align-items: center;
+  box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
+  font-size: 0.8em;
+}
+
+.icon-bell{
+  margin-right: 0.7em;
+  font-size: 1.2em;
+  color: #db9c3d;
+}
+
+.today-reminders h4{
+ margin-left: -3em;
+ font-size: 1.1em;
+ font-weight: 200;
+ color: #996b15;
+}
+
+
+
+
+.reminder-list {
+  display: flex;
+  gap: 0.9em;
+  flex-grow: 1;
+}
+
+.daily-reminders{
+  background-color: rgba(212, 176, 121, 0.4);
+  border: 0.1em solid #f0e68c;
+  border-radius: 1.5em;
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  color: #996b15;
+  white-space: nowrap;
+}
+
+.close-reminders-btn{
+  margin-left: auto;
+  font-size: 1.8em;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-reminders-btn:hover{
+  color: #000;
 }
 
 .reminder-cards{

@@ -50,6 +50,7 @@ function addTask(){
 
 createTaskbtn.addEventListener('click', () => {
   addTask();
+  renderReminderList();
 })
 
 

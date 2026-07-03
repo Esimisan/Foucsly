@@ -6,6 +6,7 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="style/dashboard.css">
   <link rel="stylesheet" href="style/modal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
   
@@ -22,20 +23,12 @@
   </div>
 
   <main class="main">
-  <div>
-    <p id="welcome-msg" class="welcome-msg">Good Afternoon, Misan</p>
+  <div class="welcome">
+    <p class="welcome-msg">Good Afternoon, Misan 👋</p>
+    <p class="current-date js-current-date"></p>
   </div>
 
-  <div id="current-date" class="date">
-    <p id="current-month">Thursday, June 18, 2026
-  </div>
-
-  <div class="today-reminders">
-    <h5>Today Reminders</h5>
-    <p class="daily-reminders">Morning run - 6:30 am</p>
-    <p class="daily-reminders">Budget report - 9 am</p>
-    <p class="close-daily-reminders"></p>
-  </div>
+  <div class="today-reminders js-today-reminders"></div>
     
   <div class="reminder-cards">
     <div class="due-day">
@@ -149,8 +142,10 @@
 
 
   </main>
+
+
   
-  <script src="script/dashboard.js"></script>
   <script src="script/modal.js"></script>
+  <script src="script/dashboard.js"></script>
 </body>
 </html>
