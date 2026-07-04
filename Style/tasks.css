@@ -1,0 +1,258 @@
+html {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box; /* padding/border are included in width, not added on top */
+}
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f5f7;
+  color: #111827;
+}
+
+.side-nav {
+  height: 100%;
+  width: 9em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #171515;
+  padding-top: 0.7em;
+}
+
+.side-nav p {
+  color: #ddd;
+  font-size: 1.2em;
+  margin: 1.2em 0.9em;
+}
+
+.side-nav ul {
+  list-style-type: none;
+  margin: 0.9em;
+  padding: 0;
+}
+
+.side-nav li {
+  margin: 0;
+}
+
+.side-nav a {
+  display: block;
+  padding: 0.6em 1em;
+  text-decoration: none;
+  font-size: 0.8em;
+  color: #ddd;
+  margin-bottom: 1.2em;
+}
+
+.side-nav a:hover {
+  background-color: #575757;
+  color: white;
+}
+
+.task-page {
+  max-width: 50em; /* 800px — keeps the list from stretching too wide */
+  margin: 0 auto;
+  padding: 2em 1.5em;
+}
+
+/* ============================================================
+     2. HEADER (title + item count)
+     ============================================================ */
+.page-header {
+  margin-bottom: 1.5em;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.75em;
+  font-weight: 700;
+}
+
+.page-header .subtitle {
+  margin-top: 0.25em;
+  font-size: 0.875em;
+  color: #6b7280;
+}
+
+/* ============================================================
+     4. SECTION HEADER ("Short-Term Tasks (5)")
+     ============================================================ */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}
+
+.status-dot {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background: #22c55e; /* green = short-term tasks group */
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+/* ============================================================
+     5. TASK LIST + TASK CARD
+     ============================================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.task-card {
+  position: relative; /* needed so the dropdown menu can be positioned inside it */
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 1em 1.1em;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  border-color: #e2e4e8;
+}
+
+/* the round checkbox circle on the left */
+.task-check {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.task-check.done {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+/* the little white checkmark, only visible when done */
+.task-check.done::after {
+  content: "";
+  width: 0.4em;
+  height: 0.7em;
+  border-right: 0.15em solid white;
+  border-bottom: 0.15em solid white;
+  transform: rotate(45deg) translate(-0.05em, -0.1em);
+}
+
+.task-info {
+  flex: 1; /* takes up all remaining horizontal space */
+  min-width: 0; /* allows text to truncate instead of overflowing */
+}
+
+.task-name {
+  font-size: 1em;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.4em 0;
+}
+
+.task-card.completed .task-name {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+.tag {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 0.2em 0.65em;
+  border-radius: 1em;
+  font-weight: 600;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+/* chevron button that opens the edit/delete menu */
+.task-more {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 1.1em;
+  padding: 0.3em;
+  border-radius: 0.4em;
+  line-height: 1;
+}
+
+.task-more:hover {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* ============================================================
+     6. EDIT / DELETE DROPDOWN MENU
+     Hidden by default. We add the "open" class with JS to show it.
+     ============================================================ */
+.task-menu {
+  position: absolute;
+  top: 3.2em;
+  right: 1em;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6em;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  min-width: 8em;
+  overflow: hidden;
+  z-index: 10;
+  display: none; /* toggled to "block" via .open */
+}
+
+.task-menu.open {
+  display: block;
+}
+
+.task-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.7em 1em;
+  border: none;
+  background: none;
+  font-size: 0.875em;
+  cursor: pointer;
+  color: #111827;
+}
+
+.task-menu button:hover {
+  background: #f3f4f6;
+}
+
+.task-menu button.delete-option {
+  color: #dc2626;
+}

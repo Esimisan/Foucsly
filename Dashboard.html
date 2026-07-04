@@ -13,42 +13,42 @@
   <div class="side-nav">
     <p class="logo">Focusly</p>
     <ul>
-      <li><a href="dashboard.html">DashBoard</a></li>
-      <li><a href="tasks.html">My Tasks</a></li>
-      <li><a href="goals.html">My Goals</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-      <li><a href="reminders.html">Reminders</a></li>
-      <li><a href="settings.html">Settings</a></li>
+      <li><a href="dashboard.html"><i class="fa-solid fa-border-all"></i> DashBoard</a></li>
+      <li><a href="tasks.html"><i class="fa-regular fa-square-check"></i> My Tasks</a></li>
+      <li><a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a></li>
+      <li><a href="reminders.html"><i class="fa-regular fa-bell"></i> Reminders</a></li>
+      <li><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
     </ul>
   </div>
 
   <main class="main">
+
   <div class="welcome">
     <p class="welcome-msg">Good Afternoon, Misan 👋</p>
     <p class="current-date js-current-date"></p>
-  </div>
+   </div>
 
-  <div class="today-reminders js-today-reminders"></div>
+   <div class="today-reminders js-today-reminders"></div>
     
-  <div class="reminder-cards">
-    <div class="due-day">
+   <div class="reminder-cards">
+     <div class="due-day">
       <h3 class="amount">0</h3>
       <p>Due Today</p>
-    </div>
-    <div class="overdue">
+     </div>
+     <div class="overdue">
       <h3 class="amount">0</h3>
       <p>Overdue</p>
-    </div>
+     </div>
 
-    <div class="goals-in-progress">
+     <div class="goals-in-progress">
       <h3 class="amount">0</h3>
       <p>Goals in progess</p>
-    </div>
-    <div class="week completion">
+     </div>
+     <div class="week completion">
       <h3 class="amount">0</h3>
       <p>Completed this week</p>
-    </div>
-  </div>
+     </div>
+   </div>
 
     <div class="dashboard-tasks">
       <section>
@@ -88,7 +88,7 @@
     </div>
 
 
-   <section>
+   
     <button class="plus-btn js-open-modal">+</button>
 
     <div class="modal js-modal">
@@ -97,15 +97,25 @@
       <h2>New Item</h2>
 
       <form>
+        <label>What are you creating?</label><br>
+        <input type="radio" id="type-task" name="item-type" class="js-type-task" value="task" checked>
+        <label for="type-task">Task (short-term) </label><br>
+        <input type="radio" id="type-goal" name="item-type" class="js-type-goal" value="goal">
+        <label for="type-goal">Goal (long-term) </label><br><br>
+
         <label>Title:</label><br>
         <input type="text" name="title" class="title js-title" placeholder="What do you want to acccomplish?"><br><br>
 
         <label>Description:</label><br>
         <textarea name="description" class=" description js-description" placeholder="Add detais, context or notes..."></textarea><br><br>
 
-        <label>Due Date & Time</label><br>
-        <input type="date" name="due" class="date js-date" placeholder="Select a date">
-        <input type="time" name="due-time" class="time js-time"><br><br>
+        <label>Due Date</label><br>
+        <input type="date" name="due" class="date js-date" placeholder="Select a date"><br><br>
+
+        <div class="js-task-only-fields">
+          <label>Due Time</label><br>
+          <input type="time" name="due-time" class="time js-time"><br><br>
+        </div>
 
         <label>Priority:</label><br>
         <select name="select-priority" class="js-priority">
@@ -123,20 +133,13 @@
           <option value="create-option">+ Create custom...</option>
         </select><br><br>
 
-        <label>Duration</label><br>
-        <select name="duration" class="js-task-duration">
-          <option>Under 1 month - Task</option>
-          <option>1 - 3 months - Short Goal</option>
-          <option>3+ months - Long Term Goal</option>
-        </select><br><br>
-
         <button type="button" class="js-create-task">Create Task</button>
       </form>
      </div>
     </div>
 
 
-   </section>
+   
 
 
 

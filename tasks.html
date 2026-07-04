@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Tasks</title>
+    <link rel="stylesheet" href="style/tasks.css" />
+    <link rel="stylesheet" href="style/modal.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo">Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="reminders.html"
+            ><i class="fa-regular fa-bell"></i> Reminders</a
+          >
+        </li>
+        <li>
+          <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <div class="main-content">
+      </div>
+      <div class="task-page">
+        <div class="page-header">
+          <h1>My Tasks</h1>
+          <div class="subtitle task-count-label"></div>
+        </div>
+
+        <div class="section-header">
+          <span class="status-dot"></span>
+          <h2>Short-Term Tasks</h2>
+        </div>
+
+        <div class="task-list" id="taskList">
+          <div class="task-card" data-id="1">
+            <div class="task-check"></div>
+            <div class="task-info">
+              <p class="task-name">Prepare Q3 budget report</p>
+              <div class="task-meta">
+                <span class="tag">Work</span>
+                <span class="due-date">Jun 17</span>
+              </div>
+            </div>
+            <button class="task-more">&#8250;</button>
+            <div class="task-menu">
+              <button class="edit-option">Edit</button>
+              <button class="delete-option">Delete</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-id="2">
+            <div class="task-check"></div>
+            <div class="task-info">
+              <p class="task-name">30-min morning run</p>
+              <div class="task-meta">
+                <span class="tag">Health</span>
+                <span class="due-date">Jun 17</span>
+              </div>
+            </div>
+            <button class="task-more">&#8250;</button>
+            <div class="task-menu">
+              <button class="edit-option">Edit</button>
+              <button class="delete-option">Delete</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-id="3">
+            <div class="task-check"></div>
+            <div class="task-info">
+              <p class="task-name">Review contract with Mara</p>
+              <div class="task-meta">
+                <span class="tag">Work</span>
+                <span class="due-date">Jun 18</span>
+              </div>
+            </div>
+            <button class="task-more">&#8250;</button>
+            <div class="task-menu">
+              <button class="edit-option">Edit</button>
+              <button class="delete-option">Delete</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-id="4">
+            <div class="task-check"></div>
+            <div class="task-info">
+              <p class="task-name">Meal prep for the week</p>
+              <div class="task-meta">
+                <span class="tag">Personal</span>
+                <span class="due-date">Jun 19</span>
+              </div>
+            </div>
+            <button class="task-more">&#8250;</button>
+            <div class="task-menu">
+              <button class="edit-option">Edit</button>
+              <button class="delete-option">Delete</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-id="5">
+            <div class="task-check"></div>
+            <div class="task-info">
+              <p class="task-name">Call accountant re: taxes</p>
+              <div class="task-meta">
+                <span class="tag">Finance</span>
+                <span class="due-date">Jun 20</span>
+              </div>
+            </div>
+            <button class="task-more">&#8250;</button>
+            <div class="task-menu">
+              <button class="edit-option">Edit</button>
+              <button class="delete-option">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+      <button class="plus-btn js-open-modal">+</button>
+
+    <div class="modal js-modal">
+      <div class="modal-content">
+        <span class="close-modal js-close-modal">&times;</span>
+        <h2>New Item</h2>
+
+        <form>
+          <label>What are you creating?</label><br />
+          <input
+            type="radio"
+            id="type-task"
+            name="item-type"
+            class="js-type-task"
+            value="task"
+            checked
+          />
+          <label for="type-task">Task (short-term) </label><br />
+          <input
+            type="radio"
+            id="type-goal"
+            name="item-type"
+            class="js-type-goal"
+            value="goal"
+          />
+          <label for="type-goal">Goal (long-term) </label><br /><br />
+
+          <label>Title:</label><br />
+          <input
+            type="text"
+            name="title"
+            class="title js-title"
+            placeholder="What do you want to acccomplish?"
+          /><br /><br />
+
+          <label>Description:</label><br />
+          <textarea
+            name="description"
+            class="description js-description"
+            placeholder="Add detais, context or notes..."
+          ></textarea
+          ><br /><br />
+
+          <label>Due Date</label><br />
+          <input
+            type="date"
+            name="due"
+            class="date js-date"
+            placeholder="Select a date"
+          /><br /><br />
+
+          <div class="js-task-only-fields">
+            <label>Due Time</label><br />
+            <input
+              type="time"
+              name="due-time"
+              class="time js-time"
+            /><br /><br />
+          </div>
+
+          <label>Priority:</label><br />
+          <select name="select-priority" class="js-priority">
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option></select
+          ><br /><br />
+
+          <label>Category</label><br />
+          <select name="category" class="js-task-category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="finance">Finance</option>
+            <option value="learning">Learning</option>
+            <option value="create-option">+ Create custom...</option></select
+          ><br /><br />
+
+          <button type="button" class="js-create-task">Create Task</button>
+        </form>
+      </div>
+    </div>
+
+    </main>
+
+    
+   
+    <script src="script/modal.js"></script>
+    <script src="script/tasks.js"></script>
+  </body>
+</html>

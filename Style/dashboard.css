@@ -1,9 +1,9 @@
-body{
+body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.side-nav{
+.side-nav {
   height: 100%;
   width: 9em;
   position: fixed;
@@ -13,26 +13,25 @@ body{
   padding-top: 0.7em;
 }
 
-.side-nav p{
+.side-nav p {
   color: #ddd;
   font-size: 1.2em;
   margin: 1.2em 0.9em;
-
 }
 
-.side-nav ul{
+.side-nav ul {
   list-style-type: none;
   margin: 0.9em;
   padding: 0;
 }
 
-.side-nav li{
+.side-nav li {
   margin: 0;
 }
 
-.side-nav a{
+.side-nav a {
   display: block;
-  padding: 0.6em, 1em;
+  padding: 0.6em 1em;
   text-decoration: none;
   font-size: 0.8em;
   color: #ddd;
@@ -44,30 +43,30 @@ body{
   color: white;
 }
 
-.main{
+.main {
   margin-left: 15em;
   padding: 2em;
 }
- 
-.welcome-msg{
+
+.welcome-msg {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 0.2em;
 }
 
-.current-date{
+.current-date {
   font-weight: 10;
   color: rgb(92, 92, 92);
   margin-top: 0;
 }
 
-.today-reminders{
+.today-reminders {
   display: flex;
   gap: 3rem;
   width: 80vw;
   margin: auto;
   padding: 0.3em 0.5em;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
   background-color: rgba(255, 249, 196, 0.5);
@@ -78,21 +77,18 @@ body{
   font-size: 0.8em;
 }
 
-.icon-bell{
+.icon-bell {
   margin-right: 0.7em;
   font-size: 1.2em;
   color: #db9c3d;
 }
 
-.today-reminders h4{
- margin-left: -3em;
- font-size: 1.1em;
- font-weight: 200;
- color: #996b15;
+.today-reminders h4 {
+  margin-left: -3em;
+  font-size: 1.1em;
+  font-weight: 200;
+  color: #996b15;
 }
-
-
-
 
 .reminder-list {
   display: flex;
@@ -100,7 +96,7 @@ body{
   flex-grow: 1;
 }
 
-.daily-reminders{
+.daily-reminders {
   background-color: rgba(212, 176, 121, 0.4);
   border: 0.1em solid #f0e68c;
   border-radius: 1.5em;
@@ -112,7 +108,7 @@ body{
   white-space: nowrap;
 }
 
-.close-reminders-btn{
+.close-reminders-btn {
   margin-left: auto;
   font-size: 1.8em;
   color: #777;
@@ -120,28 +116,29 @@ body{
   transition: color 0.2s ease;
 }
 
-.close-reminders-btn:hover{
+.close-reminders-btn:hover {
   color: #000;
 }
 
-.reminder-cards{
+.reminder-cards {
   display: flex;
   gap: 5rem;
   width: 80vw;
   margin: auto;
   padding: 2rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.dashboard-tasks{
+.dashboard-tasks {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-section{
+section {
   flex: 1;
   width: 35rem;
   background: #f9f9f9;
@@ -150,12 +147,13 @@ section{
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }
 
-section h4{
+section h4 {
   margin-top: 0;
   font-size: 1.2rem;
 }
 
-.dashboard-short-tasks, .dashboard-long-goals{
+.dashboard-short-tasks,
+.dashboard-long-goals {
   margin-bottom: 1rem;
   padding: 0.7rem;
   background: #fff;
