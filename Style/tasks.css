@@ -172,6 +172,8 @@ body {
   font-weight: 600;
   color: #111827;
   margin: 0 0 0.4em 0;
+  display: flex;
+  align-items: center;
 }
 
 .task-card.completed .task-name {
@@ -195,6 +197,27 @@ body {
   font-weight: 600;
   font-size: 0.85em;
   white-space: nowrap;
+}
+
+.priority-dot {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  flex-shrink: 0;
+}
+
+.priority-high {
+  background: #ef4444; /* red */
+}
+
+.priority-medium {
+  background: #f59e0b; /* amber/orange */
+}
+
+.priority-low {
+  background: #22c55e; /* green */
 }
 
 /* chevron button that opens the edit/delete menu */
@@ -255,4 +278,48 @@ body {
 
 .task-menu button.delete-option {
   color: #dc2626;
+}
+
+.task-toast {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  max-width: 20em;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  padding: 1em 1.1em;
+  z-index: 100;
+}
+
+.task-toast p {
+  margin: 0 0 0.8em 0;
+  font-size: 0.875em;
+  color: #111827;
+}
+
+.task-toast-actions {
+  display: flex;
+  gap: 0.6em;
+}
+
+.task-toast-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em 0.7em;
+  font-size: 0.8em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.js-toast-delete {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.js-toast-dismiss {
+  background: #f3f4f6;
+  color: #374151;
 }
