@@ -36,6 +36,47 @@
   overflow-y: auto;
 }
 
+.milestone-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.milestone-number {
+  font-weight: 600;
+  color: #6b7280;
+  flex-shrink: 0;
+  width: 1.5em;
+}
+
+.milestone-input {
+  flex: 1;
+  padding: 0.5em 0.7em;
+  border: 1px solid #d1d5db;
+  border-radius: 0.4em;
+}
+
+.milestone-remove {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 1.2em;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.add-milestone-btn {
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 0.5em;
+  padding: 0.5em 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .close-modal {
   float: right;
   font-size: 1.5em;
