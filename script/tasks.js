@@ -23,7 +23,19 @@ function loadTasks() {
     //makes sure new tasks are created and never reuse an old id
     const highestId = todoTasks.reduce((max, t) => Math.max(max, t.id), 0);
     nextId = Math.max(nextId, highestId + 1);
+  } else {
+    // no seed data — a brand new user just starts with an empty list
+    todoTasks = [];
+    nextId = 1;
   }
+}
+
+//checks if a task's due date/time has already passed
+function isTaskOverdue(task) {
+  if (!task.dueDate) return false;
+
+  const dueDateTime = new Date(`${task.dueDate}T${task.dueTime || "23:59"}`);
+  return dueDateTime.getTime() < Date.now();
 }
 
 function renderTaskList() {
@@ -33,6 +45,13 @@ function renderTaskList() {
     const isPendingComplete = pendingCompletedIds.has(task.id);
     // checking if task is completed or still pending
     const isCompleted = task.status === "completed" || isPendingComplete;
+
+    //a task only counts as overdue if it's still active — checked or deleted tasks don't qualify
+    const overdue = !isCompleted && isTaskOverdue(task);
+
+    //this row holds the card and the overdue badge side by side, so the badge sits outside the card, not inside it
+    const row = document.createElement("div");
+    row.className = "task-row";
 
     //building each card as a real DOM elemennt
     const card = document.createElement("div");
@@ -51,12 +70,27 @@ function renderTaskList() {
             </div>
             <button class="task-more js-task-options">&#8250;</button>
             <div class="task-menu">
-              <button class="edit-option js-edit-option">Edit</button>
+              ${
+                //completed tasks get "Redo Task" instead of "Edit"
+                isCompleted
+                  ? `<button class="redo-option js-redo-option">Redo Task</button>`
+                  : `<button class="edit-option js-edit-option">Edit</button>`
+              }
               <button class="delete-option js-delete-option">Delete</button>
             </div>
     `;
 
-    taskListContainer.appendChild(card);
+    row.appendChild(card);
+
+    //only add the badge next to the card if the task is actually overdue
+    if (overdue) {
+      const badge = document.createElement("div");
+      badge.className = "overdue-badge";
+      badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Task overdue`;
+      row.appendChild(badge);
+    }
+
+    taskListContainer.appendChild(row);
   });
 }
 
@@ -88,15 +122,22 @@ taskListContainer.addEventListener("click", (event) => {
 
   if (event.target.closest(".js-task-options")) {
     const menu = card.querySelector(".task-menu");
-    const isOpen = menu.classList.contains(".open");
+    const isOpen = menu.classList.contains("open");
     closeAllMenus();
-    if (!isOpen) menu.classList.add(".open");
+    if (!isOpen) menu.classList.add("open");
     return;
   }
 
   if (event.target.closest(".js-edit-option")) {
     closeAllMenus();
     openEditModal(task, "task");
+    return;
+  }
+
+  if (event.target.closest(".js-redo-option")) {
+    //reschedule a checked task and make it active again
+    closeAllMenus();
+    openRedoModal(task);
     return;
   }
 
@@ -157,6 +198,56 @@ function deleteTask(id) {
   renderTotalTasks();
 }
 
+// checked/completed tasks show "Redo Task" instead of "Edit" in their menu
+// this modal only asks for a new date and time, nothing else about the task changes
+const redoModal = document.querySelector(".js-redo-modal");
+const closeRedoBtn = document.querySelector(".js-close-redo-modal");
+const redoDateInput = document.querySelector(".js-redo-date");
+const redoTimeInput = document.querySelector(".js-redo-time");
+const saveRedoBtn = document.querySelector(".js-save-redo");
+
+// keeps track of which task the redo modal is currently open for
+let redoTaskId = null;
+
+function openRedoModal(task) {
+  redoTaskId = task.id;
+  redoDateInput.value = task.dueDate || "";
+  redoTimeInput.value = task.dueTime || "";
+  redoModal.style.display = "block";
+}
+
+function closeRedoModal() {
+  redoModal.style.display = "none";
+  redoTaskId = null;
+}
+
+saveRedoBtn.addEventListener("click", () => {
+  const task = todoTasks.find((t) => t.id === redoTaskId);
+  if (!task) return;
+
+  //give it a new date and time
+  task.dueDate = redoDateInput.value;
+  task.dueTime = redoTimeInput.value;
+
+  //bring it back to active, whether it was only checked or already locked in as completed
+  task.status = "pending";
+  pendingCompletedIds.delete(task.id);
+
+  saveTasks();
+  renderTaskList();
+  renderTotalTasks();
+  closeRedoModal();
+});
+
+closeRedoBtn.addEventListener("click", closeRedoModal);
+
+//closes the redo modal if you click outside it
+window.addEventListener("click", (event) => {
+  if (event.target === redoModal) {
+    closeRedoModal();
+  }
+});
+
 // the mark as completed toast/popup(reusable block of code)
 function showCompletionToast(task) {
   //remove any popup on the screen so it doesnt stack up
@@ -172,7 +263,7 @@ function showCompletionToast(task) {
     </div>
   `;
 
-  toast.querySelector("js-toast-delete").addEventListener("click", () => {
+  toast.querySelector(".js-toast-delete").addEventListener("click", () => {
     deleteTask(task.id);
     toast.remove();
   });
@@ -187,5 +278,5 @@ function showCompletionToast(task) {
 }
 
 loadTasks();
-renderTotalTasks();
+renderTaskList();
 renderTotalTasks();

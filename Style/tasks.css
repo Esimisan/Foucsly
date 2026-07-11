@@ -107,12 +107,15 @@ body {
 .task-list {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.75em;
 }
 
 .task-card {
   position: relative; /* needed so the dropdown menu can be positioned inside it */
   display: flex;
+  flex: 1;
+  min-width: 0; /* allows text to truncate instead of overflowing */
   align-items: center;
   gap: 0.9em;
   background: #ffffff;
@@ -322,4 +325,19 @@ body {
 .js-toast-dismiss {
   background: #f3f4f6;
   color: #374151;
+}
+
+.overdue-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 0.5em 0.8em;
+  border-radius: 0.6em;
+  font-size: 0.8em;
+  font-weight: 600;
 }
