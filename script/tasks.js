@@ -10,6 +10,9 @@ const totalTaskCount = document.querySelector(".task-count-label");
 // for checked tasks that hasnt been locked in yet
 let pendingCompletedIds = new Set();
 
+// for overdue tasks checked after their deadline — these are "overdue", not "completed"
+let pendingOverdueIds = new Set();
+
 function saveTasks() {
   localStorage.setItem("todoTasks", JSON.stringify(todoTasks));
 }
@@ -38,16 +41,25 @@ function isTaskOverdue(task) {
   return dueDateTime.getTime() < Date.now();
 }
 
+//a task only counts as "active" if it's still pending and hasn't been checked as completed or overdue yet
+function isTaskActive(task) {
+  return (
+    task.status === "pending" &&
+    !pendingCompletedIds.has(task.id) &&
+    !pendingOverdueIds.has(task.id)
+  );
+}
+
 function renderTaskList() {
   taskListContainer.innerHTML = "";
 
   todoTasks.forEach((task) => {
-    const isPendingComplete = pendingCompletedIds.has(task.id);
-    // checking if task is completed or still pending
-    const isCompleted = task.status === "completed" || isPendingComplete;
+    //isChecked covers BOTH completed and overdue — both get the strikethrough/checkmark treatment,
+    //but only "completed" ever counts toward something like a completed-tasks accumulator
+    const isChecked = !isTaskActive(task);
 
     //a task only counts as overdue if it's still active — checked or deleted tasks don't qualify
-    const overdue = !isCompleted && isTaskOverdue(task);
+    const overdue = isTaskActive(task) && isTaskOverdue(task);
 
     //this row holds the card and the overdue badge side by side, so the badge sits outside the card, not inside it
     const row = document.createElement("div");
@@ -55,10 +67,10 @@ function renderTaskList() {
 
     //building each card as a real DOM elemennt
     const card = document.createElement("div");
-    card.className = "task-card" + (isCompleted ? " completed" : "");
+    card.className = "task-card" + (isChecked ? " completed" : "");
     card.dataset.id = task.id;
     card.innerHTML = `
-            <div class="task-check ${isCompleted ? "done" : ""}"></div>
+            <div class="task-check ${isChecked ? "done" : ""}"></div>
             <div class="task-info">
               <p class="task-name js-task-name">
               <span class="priority-dot ${priorityColors[task.priority]}"></span> ${task.title} 
@@ -71,8 +83,8 @@ function renderTaskList() {
             <button class="task-more js-task-options">&#8250;</button>
             <div class="task-menu">
               ${
-                //completed tasks get "Redo Task" instead of "Edit"
-                isCompleted
+                //checked (completed OR overdue) tasks get "Redo Task" instead of "Edit"
+                isChecked
                   ? `<button class="redo-option js-redo-option">Redo Task</button>`
                   : `<button class="edit-option js-edit-option">Edit</button>`
               }
@@ -97,10 +109,8 @@ function renderTaskList() {
 function renderTotalTasks() {
   if (!totalTaskCount) return;
 
-  // what makes the task count drop when you check a task as completed
-  const activeCount = todoTasks.filter(
-    (task) => task.status !== "completed" && !pendingCompletedIds.has(task.id),
-  ).length;
+  // what makes the task count drop when you check a task as completed or overdue
+  const activeCount = todoTasks.filter(isTaskActive).length;
 
   totalTaskCount.textContent = `${activeCount} task${activeCount === 1 ? "" : "s"} remaining`;
 }
@@ -165,6 +175,11 @@ window.addEventListener("click", (event) => {
 function toggleTaskCheck(task) {
   if (pendingCompletedIds.has(task.id)) {
     pendingCompletedIds.delete(task.id);
+  } else if (pendingOverdueIds.has(task.id)) {
+    pendingOverdueIds.delete(task.id);
+  } else if (isTaskOverdue(task)) {
+    //an overdue task checked late is "overdue", not "completed" — no toast, doesn't count as a real completion
+    pendingOverdueIds.add(task.id);
   } else {
     pendingCompletedIds.add(task.id);
     showCompletionToast(task);
@@ -174,25 +189,25 @@ function toggleTaskCheck(task) {
   renderTotalTasks();
 }
 
-//where the check complete finally becomes permanent, when the tab is closed, refreshed or the user navigates to another page
-function commitPendingCompletions() {
-  if (pendingCompletedIds.size === 0) return;
+//where a checked task finally becomes permanent, when the tab is closed, refreshed or the user navigates to another page
+function commitPendingChecks() {
+  if (pendingCompletedIds.size === 0 && pendingOverdueIds.size === 0) return;
 
   todoTasks.forEach((task) => {
-    if (pendingCompletedIds.has(task.id)) {
-      task.status = "completed";
-    }
+    if (pendingCompletedIds.has(task.id)) task.status = "completed";
+    if (pendingOverdueIds.has(task.id)) task.status = "overdue";
   });
 
   saveTasks();
 }
 
-window.addEventListener("beforeunload", commitPendingCompletions);
+window.addEventListener("beforeunload", commitPendingChecks);
 
 //delete the task by using .filter() to remove by id
 function deleteTask(id) {
   todoTasks = todoTasks.filter((task) => task.id !== id);
   pendingCompletedIds.delete(id);
+  pendingOverdueIds.delete(id);
   saveTasks();
   renderTaskList();
   renderTotalTasks();
@@ -229,9 +244,10 @@ saveRedoBtn.addEventListener("click", () => {
   task.dueDate = redoDateInput.value;
   task.dueTime = redoTimeInput.value;
 
-  //bring it back to active, whether it was only checked or already locked in as completed
+  //bring it back to active, whether it was checked, overdue, or already locked in permanently
   task.status = "pending";
   pendingCompletedIds.delete(task.id);
+  pendingOverdueIds.delete(task.id);
 
   saveTasks();
   renderTaskList();
