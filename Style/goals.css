@@ -1,0 +1,95 @@
+/* ============================================================
+   GOAL LIST + GOAL CARD
+   Reuses .task-card / .task-menu / .tag from tasks.css for the
+   shared shell — only the goal-specific pieces live here.
+   ============================================================ */
+.goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.goal-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 1em 1.1em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.goal-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75em;
+}
+
+.goal-title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.goal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  flex-shrink: 0;
+}
+
+.view-journey-btn {
+  background: #ffffff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 0.4em 1em;
+  font-size: 0.8em;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.view-journey-btn:hover {
+  background: #eef2ff;
+}
+
+.goal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.8em;
+  color: #6b7280;
+  margin: 0.5em 0 0.8em 0;
+}
+
+.goal-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.goal-progress-track {
+  flex: 1;
+  height: 0.5em;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.goal-progress-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.goal-progress-percent {
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #4f46e5;
+  min-width: 2.5em;
+  text-align: right;
+  flex-shrink: 0;
+}

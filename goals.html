@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Goals</title>
+    <link rel="stylesheet" href="style/tasks.css" />
+    <link rel="stylesheet" href="style/goals.css" />
+    <link rel="stylesheet" href="style/modal.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo">Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="reminders.html"
+            ><i class="fa-regular fa-bell"></i> Reminders</a
+          >
+        </li>
+        <li>
+          <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <div class="task-page">
+        <div class="page-header">
+          <h1>My Goals</h1>
+          <div class="subtitle goal-count-label"></div>
+        </div>
+
+        <div class="section-header">
+          <span class="status-dot"></span>
+          <h2>Active Goals</h2>
+        </div>
+
+        <div class="goal-list js-goal-list"></div>
+      </div>
+
+      <button class="plus-btn js-open-modal">+</button>
+
+      <div class="modal js-modal">
+        <div class="modal-content">
+          <span class="close-modal js-close-modal">&times;</span>
+          <h2>New Item</h2>
+
+          <form>
+            <label>What are you creating?</label><br />
+            <input
+              type="radio"
+              id="type-task"
+              name="item-type"
+              class="js-type-task"
+              value="task"
+            />
+            <label for="type-task">Task (short-term) </label><br />
+            <input
+              type="radio"
+              id="type-goal"
+              name="item-type"
+              class="js-type-goal"
+              value="goal"
+              checked
+            />
+            <label for="type-goal">Goal (long-term) </label><br /><br />
+
+            <label>Title:</label><br />
+            <input
+              type="text"
+              name="title"
+              class="title js-title"
+              placeholder="What do you want to acccomplish?"
+            /><br /><br />
+
+            <label>Description:</label><br />
+            <textarea
+              name="description"
+              class="description js-description"
+              placeholder="Add detais, context or notes..."
+            ></textarea
+            ><br /><br />
+
+            <label>Due Date</label><br />
+            <input
+              type="date"
+              name="due"
+              class="date js-date"
+              placeholder="Select a date"
+            /><br /><br />
+
+            <div class="js-task-only-fields">
+              <label>Due Time</label><br />
+              <input
+                type="time"
+                name="due-time"
+                class="time js-time"
+              /><br /><br />
+            </div>
+
+            <label>Priority:</label><br />
+            <select name="select-priority" class="js-priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option></select
+            ><br /><br />
+
+            <label>Category</label><br />
+            <select name="category" class="js-task-category">
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="finance">Finance</option>
+              <option value="learning">Learning</option>
+              <option value="create-option">+ Create custom...</option></select
+            ><br /><br />
+
+            <div class="js-goal-only-fields" style="display: none">
+              <label>Milestones:</label><br />
+              <div class="milestone-list js-milestone-list"></div>
+              <button type="button" class="add-milestone-btn js-add-milestone">
+                Milestone(s) +
+              </button>
+              <br /><br />
+            </div>
+
+            <button type="button" class="js-create-task">Create Task</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="script/modal.js"></script>
+    <script src="script/goals.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goal Journey</title>
+    <link rel="stylesheet" href="style/tasks.css" />
+    <link rel="stylesheet" href="style/goals.css" />
+    <link rel="stylesheet" href="style/goals-progress.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo">Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="reminders.html"
+            ><i class="fa-regular fa-bell"></i> Reminders</a
+          >
+        </li>
+        <li>
+          <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <div class="journey-page">
+        <a href="goals.html" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i> Back to Goals
+        </a>
+
+        <!-- Filled by JS: tags, title, due date, entry count -->
+        <div class="journey-header js-journey-header"></div>
+
+        <div class="journey-progress-wrap">
+          <span class="journey-progress-label js-milestones-label"></span>
+          <div class="goal-progress-track">
+            <div
+              class="goal-progress-fill js-progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+          <span class="journey-progress-percent js-progress-percent"></span>
+        </div>
+
+        <div class="journey-tabs">
+          <button class="journey-tab js-tab-overview" data-tab="overview">
+            Overview
+          </button>
+          <button class="journey-tab js-tab-journey" data-tab="journey">
+            Journey
+          </button>
+        </div>
+
+        <!-- OVERVIEW PANEL -->
+        <div class="journey-panel js-overview-panel">
+          <div class="panel-card">
+            <h3>Description</h3>
+            <p class="js-goal-description"></p>
+          </div>
+          <div class="panel-card">
+            <h3>Milestones</h3>
+            <div class="milestone-checklist js-milestone-checklist"></div>
+          </div>
+        </div>
+
+        <!-- JOURNEY PANEL -->
+        <div class="journey-panel js-journey-panel">
+          <div class="panel-card-header">
+            <h3>Progress Journal</h3>
+            <button class="add-progress-btn js-toggle-add-progress">
+              + Add Progress
+            </button>
+          </div>
+
+          <div class="new-entry-card js-new-entry-card" style="display: none">
+            <textarea
+              class="new-entry-input js-new-entry-input"
+              placeholder="Describe your progress today..."
+            ></textarea>
+            <button class="save-entry-btn js-save-entry">Save</button>
+          </div>
+
+          <div class="journey-timeline js-journey-timeline"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="script/goals-progress.js"></script>
+  </body>
+</html>
