@@ -1,0 +1,522 @@
+/* ============================================================
+   FOCUS PAGE
+   Reuses colors/spacing conventions from tasks.css:
+   purple #4f46e5, green #22c55e/#059669, red #dc2626, gray #6b7280,
+   card radius 0.9em, border #edeef0, em-based sizing throughout.
+   ============================================================ */
+
+.focus-page {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 2em 1.5em;
+}
+
+/* highlight for the current nav link — tasks.css doesn't define this yet */
+.side-nav a.active {
+  background-color: #575757;
+  color: white;
+}
+
+/* ---------- header + weekly accumulator ---------- */
+.focus-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-bottom: 1.6em;
+}
+
+.focus-header h1 {
+  margin: 0;
+  font-size: 1.75em;
+  font-weight: 700;
+}
+
+.focus-accumulator {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+  border: 1px solid #c7d2fe;
+  border-radius: 0.9em;
+  padding: 0.7em 1.1em;
+}
+
+.focus-accumulator i {
+  color: #4f46e5;
+  font-size: 1.2em;
+}
+
+.focus-accumulator-value {
+  font-weight: 700;
+  font-size: 1.05em;
+  color: #4f46e5;
+  line-height: 1.2;
+}
+
+.focus-accumulator-label {
+  font-size: 0.75em;
+  color: #6b7280;
+}
+
+/* ---------- starter card (wraps the whole idle/picking/duration/running/ended flow) ---------- */
+.focus-starter-card {
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 1.3em 1.4em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2em;
+}
+
+.focus-stage {
+  text-align: left;
+}
+
+/* ---------- idle: two compact pill buttons side by side ---------- */
+.focus-idle-row {
+  display: flex;
+  gap: 0.8em;
+  flex-wrap: wrap;
+}
+
+.focus-choice-btn {
+  flex: 1;
+  min-width: 12em;
+  background: #f8f9ff;
+  border: 1.5px dashed #c7d2fe;
+  border-radius: 0.8em;
+  padding: 1em 1.1em;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #4f46e5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.focus-choice-btn:hover {
+  background: #eef2ff;
+  border-color: #4f46e5;
+  transform: translateY(-1px);
+}
+
+/* ---------- picker: search + filtered list ---------- */
+.focus-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.focus-picker-header h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 700;
+  color: #111827;
+}
+
+.focus-back-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 0.85em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.2em;
+}
+
+.focus-back-btn:hover {
+  color: #4f46e5;
+}
+
+.focus-search-input {
+  width: 100%;
+  padding: 0.7em 1em;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.7em;
+  font-size: 0.9em;
+  margin-bottom: 0.9em;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.focus-search-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.focus-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  max-height: 16em;
+  overflow-y: auto;
+}
+
+.focus-item-option {
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.8em;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  font-size: 0.9em;
+  text-align: left;
+  width: 100%;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.focus-item-option:hover {
+  border-color: #c7d2fe;
+  background: #f8f9ff;
+}
+
+.focus-item-option-title {
+  font-weight: 600;
+  color: #111827;
+}
+
+.focus-item-empty {
+  color: #9ca3af;
+  font-size: 0.875em;
+  padding: 1.5em 0;
+  text-align: center;
+}
+
+/* ---------- duration picker ---------- */
+.focus-selected-label {
+  font-size: 0.8em;
+  color: #6b7280;
+  margin-bottom: 0.2em;
+}
+
+.focus-selected-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.3em;
+}
+
+.focus-duration-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6em;
+  margin-bottom: 1em;
+}
+
+.focus-duration-btn {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.7em;
+  padding: 0.8em 0.5em;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #374151;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.focus-duration-btn:hover {
+  border-color: #c7d2fe;
+}
+
+.focus-duration-btn.selected {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+}
+
+.focus-custom-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 1.4em;
+  font-size: 0.9em;
+  color: #374151;
+}
+
+.focus-custom-duration input {
+  width: 4.5em;
+  padding: 0.55em 0.6em;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6em;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.focus-custom-duration input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.focus-start-btn {
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.7em;
+  padding: 0.8em 1.6em;
+  font-weight: 700;
+  font-size: 0.95em;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s ease;
+}
+
+.focus-start-btn:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.focus-start-btn:disabled {
+  background: #c7d2fe;
+  cursor: not-allowed;
+}
+
+/* ---------- active countdown ---------- */
+.focus-active-label {
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+.focus-active-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #111827;
+  margin: 0.2em 0 1.2em 0;
+}
+
+.focus-timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  background: #f8f9ff;
+  border: 1px solid #e0e4ff;
+  border-radius: 0.8em;
+  padding: 1em 1.2em;
+}
+
+.focus-countdown {
+  font-size: 2em;
+  font-weight: 700;
+  color: #4f46e5;
+  font-variant-numeric: tabular-nums;
+}
+
+.focus-end-btn {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 0.7em;
+  padding: 0.6em 1.1em;
+  font-weight: 600;
+  font-size: 0.85em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.focus-end-btn:hover {
+  background: #fecaca;
+}
+
+/* ---------- session ended (natural completion) ---------- */
+.focus-ended-panel {
+  text-align: center;
+}
+
+.focus-ended-icon {
+  font-size: 2.2em;
+  color: #22c55e;
+  margin-bottom: 0.4em;
+}
+
+.focus-ended-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.3em;
+}
+
+.focus-ended-sub {
+  font-size: 0.85em;
+  color: #6b7280;
+  margin-bottom: 1.4em;
+}
+
+.focus-ended-actions {
+  display: flex;
+  gap: 0.6em;
+  justify-content: center;
+}
+
+.focus-restart-btn {
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.7em;
+  padding: 0.7em 1.3em;
+  font-weight: 700;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.focus-restart-btn:hover {
+  background: #4338ca;
+}
+
+.focus-done-btn {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  border-radius: 0.7em;
+  padding: 0.7em 1.3em;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.focus-done-btn:hover {
+  background: #f3f4f6;
+}
+
+/* ============================================================
+   FOCUS HISTORY
+   ============================================================ */
+.focus-history-heading {
+  font-size: 1em;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1em;
+}
+
+.focus-history-empty {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.875em;
+  padding: 3em 1em;
+  background: #ffffff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 0.9em;
+}
+
+.focus-history-group {
+  margin-bottom: 1.6em;
+}
+
+.focus-history-group .section-header {
+  margin-bottom: 0.8em;
+}
+
+.focus-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.focus-history-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 0.9em 1em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.focus-history-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  border-color: #e2e4e8;
+}
+
+.focus-history-icon {
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 0.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1em;
+}
+
+.focus-history-icon.task {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.focus-history-icon.goal {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.focus-history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.focus-history-title {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.35em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.focus-history-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+.focus-history-duration {
+  font-weight: 700;
+  color: #4f46e5;
+  font-size: 0.9em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.focus-history-delete {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 0.9em;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.focus-history-delete:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}

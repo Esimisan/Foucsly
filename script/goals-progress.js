@@ -1,6 +1,3 @@
-// NEW: goals-progress.js is a standalone page — it doesn't share global
-// variables with goals.js/tasks.js, so it loads its own copy of `goals`
-// from localStorage rather than relying on data set up elsewhere.
 let goals = [];
 
 // Reuse tip: reading an id out of the URL's query string (?id=3) is how

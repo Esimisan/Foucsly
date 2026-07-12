@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus</title>
+    <link rel="stylesheet" href="style/tasks.css" />
+    <link rel="stylesheet" href="style/focus.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo">Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="focus.html" class="active"
+            ><i class="fa-solid fa-stopwatch"></i> Focus</a
+          >
+        </li>
+        <li>
+          <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
+        </li>
+      </ul>
+    </div>
+
+    <main>
+      <div class="focus-page">
+        <div class="focus-header">
+          <h1>Focus</h1>
+          <div class="focus-accumulator">
+            <i class="fa-solid fa-fire"></i>
+            <div>
+              <div class="focus-accumulator-value js-accumulator-value">0m</div>
+              <div class="focus-accumulator-label">focused this week</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- starter card: idle / picking / duration / running / ended -->
+        <div class="focus-starter-card">
+          <div class="focus-stage js-focus-stage"></div>
+        </div>
+
+        <!-- history list: grouped by recency, rebuilt on every session change -->
+        <div class="focus-history js-focus-history"></div>
+      </div>
+    </main>
+
+    <script src="script/focus.js"></script>
+  </body>
+</html>

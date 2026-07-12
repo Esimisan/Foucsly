@@ -1,9 +1,7 @@
 const goalListEl = document.querySelector(".js-goal-list");
 const goalCountLabel = document.querySelector(".goal-count-label");
 
-// NEW: progress is CALCULATED here, never read from a stored field.
-// Reuse tip: this same "count what matches / divide by total" pattern
-// works for any "X of Y complete" display anywhere in the app.
+// progress is calculated as the number of completed milestones divided by the total number of milestones, expressed as a percentage. This function returns an object containing the completed count, total count, and the calculated percentage.
 function getGoalProgress(goal) {
   const milestones = goal.milestones || [];
   const total = milestones.length;
@@ -22,8 +20,7 @@ function loadGoals() {
   if (stored) {
     goals = JSON.parse(stored);
 
-    // same trick as loadTasks() — make sure new goals never reuse an old id,
-    // since tasks and goals share the same nextId counter
+    // same trick as loadTasks() — make sure new goals never reuse an old id, even if the user deletes all goals and starts over.
     const highestId = goals.reduce((max, g) => Math.max(max, g.id), 0);
     nextId = Math.max(nextId, highestId + 1);
   } else {
@@ -31,8 +28,6 @@ function loadGoals() {
   }
 }
 
-// Reuse tip: "clear then rebuild" — same pattern as renderTaskList.
-// Wipe the container, then redraw everything fresh from the goals array.
 function renderGoalsList() {
   goalListEl.innerHTML = "";
 
