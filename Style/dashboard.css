@@ -1,6 +1,15 @@
+/* ============================================================
+   DASHBOARD
+   Reuses colors/spacing conventions from tasks.css/goals.css/focus.css:
+   purple #4f46e5, green #22c55e/#059669, red #dc2626/#ef4444, amber #f59e0b,
+   gray #6b7280, card radius 0.9em, border #edeef0, em-based sizing throughout.
+   ============================================================ */
+
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f5f7;
+  color: #111827;
 }
 
 .side-nav {
@@ -38,126 +47,464 @@ body {
   margin-bottom: 1.2em;
 }
 
-.side-nav a:hover {
+.side-nav a:hover,
+.side-nav a.active {
   background-color: #575757;
   color: white;
 }
 
 .main {
-  margin-left: 15em;
-  padding: 2em;
+  margin-left: 9em;
+  padding: 2em 2.2em;
+  box-sizing: border-box;
+  /* width, not max-width — this is the full remaining strip beside the
+     sidebar; .dashboard-content below is what actually gets centered in it */
+  width: calc(100% - 9em);
+}
+
+.dashboard-content {
+  max-width: 65em;
+  margin: 0 auto;
+}
+
+/* ---------- top row: greeting + search ---------- */
+.dashboard-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  margin-bottom: 1.8em;
 }
 
 .welcome-msg {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 0.2em;
+  font-size: 1.4em;
+  font-weight: 700;
+  margin: 0 0 0.2em 0;
 }
 
 .current-date {
-  font-weight: 10;
-  color: rgb(92, 92, 92);
-  margin-top: 0;
+  font-weight: 400;
+  color: #6b7280;
+  margin: 0;
+  font-size: 0.9em;
 }
 
-.today-reminders {
+.dashboard-search-wrap {
+  position: relative;
+  width: 22em;
+  max-width: 100%;
+}
+
+.dashboard-search-icon {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.9em;
+}
+
+.dashboard-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 0.75em 1.1em 0.75em 2.6em;
+  font-size: 0.9em;
+  font-family: inherit;
+  color: #111827;
+}
+
+.dashboard-search-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.dashboard-search-results {
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.8em;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  max-height: 20em;
+  overflow-y: auto;
+  z-index: 20;
+  display: none;
+}
+
+.dashboard-search-results.open {
+  display: block;
+}
+
+.dashboard-search-result {
   display: flex;
-  gap: 3rem;
-  width: 80vw;
-  margin: auto;
-  padding: 0.3em 0.5em;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
-  background-color: rgba(255, 249, 196, 0.5);
-  border: 0.1em solid #f0e68c;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.75em 1em;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dashboard-search-result:last-child {
+  border-bottom: none;
+}
+
+.dashboard-search-result:hover {
+  background: #f8f9ff;
+}
+
+.dashboard-search-result-icon {
+  width: 1.8em;
+  height: 1.8em;
   border-radius: 0.5em;
-  align-items: center;
-  box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.1);
-  font-size: 0.8em;
-}
-
-.icon-bell {
-  margin-right: 0.7em;
-  font-size: 1.2em;
-  color: #db9c3d;
-}
-
-.today-reminders h4 {
-  margin-left: -3em;
-  font-size: 1.1em;
-  font-weight: 200;
-  color: #996b15;
-}
-
-.reminder-list {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.85em;
+}
+
+.dashboard-search-result-icon.task {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.dashboard-search-result-icon.goal {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.dashboard-search-result-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-search-result-type {
+  font-size: 0.75em;
+  color: #9ca3af;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.dashboard-search-empty {
+  padding: 1.2em 1em;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.85em;
+}
+
+/* ---------- stat cards ---------- */
+.reminder-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 1.1em 1.2em;
+  display: flex;
+  align-items: center;
   gap: 0.9em;
-  flex-grow: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
-.daily-reminders {
-  background-color: rgba(212, 176, 121, 0.4);
-  border: 0.1em solid #f0e68c;
-  border-radius: 1.5em;
-  padding: 0.5em 1em;
+.stat-icon {
+  width: 2.6em;
+  height: 2.6em;
+  border-radius: 0.8em;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.05em;
+}
+
+.due-day .stat-icon {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.overdue .stat-icon {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.goals-in-progress .stat-icon {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.week-completion .stat-icon {
+  background: #ecfdf5;
+  color: #22c55e;
+}
+
+.focus-time .stat-icon {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.stat-card .amount {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-card p {
+  margin: 0.1em 0 0 0;
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+/* ---------- short-term tasks / long-term goals ---------- */
+.dashboard-tasks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6em;
+  align-items: start;
+}
+
+.dashboard-tasks section {
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.9em;
+  padding: 1.4em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 1.1em;
+}
+
+.status-dot {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.task-dot {
+  background: #22c55e;
+}
+
+.status-dot.goal-dot {
+  background: #6366f1;
+}
+
+.section-header h4 {
+  margin: 0;
   font-size: 1em;
-  color: #996b15;
+  font-weight: 700;
+}
+
+.dashboard-count-badge {
+  font-size: 0.85em;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.dashboard-snippet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  max-height: 26em;
+  overflow-y: auto;
+  padding-right: 0.2em;
+}
+
+.dashboard-snippet-empty {
+  color: #9ca3af;
+  font-size: 0.875em;
+  text-align: center;
+  padding: 2em 0;
+}
+
+/* ---------- task snippet card (no % / no progress bar, per data model) ---------- */
+.dashboard-task-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.8em;
+  padding: 0.85em 1em;
+  cursor: pointer;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.dashboard-task-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  border-color: #e2e4e8;
+}
+
+.dashboard-task-priority-dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dashboard-task-priority-dot.priority-high {
+  background: #ef4444;
+}
+
+.dashboard-task-priority-dot.priority-medium {
+  background: #f59e0b;
+}
+
+.dashboard-task-priority-dot.priority-low {
+  background: #22c55e;
+}
+
+.dashboard-task-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dashboard-task-title {
+  font-size: 0.92em;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.35em 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-task-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.78em;
+  color: #6b7280;
+}
+
+.tag {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 0.2em 0.65em;
+  border-radius: 1em;
+  font-weight: 600;
+  font-size: 0.85em;
   white-space: nowrap;
 }
 
-.close-reminders-btn {
-  margin-left: auto;
-  font-size: 1.8em;
-  color: #777;
-  cursor: pointer;
-  transition: color 0.2s ease;
+/* ---------- goal snippet card (% + slim progress bar, left accent) ---------- */
+.dashboard-goal-card {
+  border-left: 3px solid #6366f1;
+  background: #ffffff;
+  border-top: 1px solid #edeef0;
+  border-right: 1px solid #edeef0;
+  border-bottom: 1px solid #edeef0;
+  border-radius: 0.5em 0.8em 0.8em 0.5em;
+  padding: 0.85em 1em;
 }
 
-.close-reminders-btn:hover {
-  color: #000;
-}
-
-.reminder-cards {
+.dashboard-goal-top-row {
   display: flex;
-  gap: 5rem;
-  width: 80vw;
-  margin: auto;
-  padding: 2rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.dashboard-tasks {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  gap: 0.7em;
+  margin-bottom: 0.5em;
 }
 
-section {
+.dashboard-goal-title {
+  font-size: 0.92em;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.dashboard-view-journey-btn {
+  background: #ffffff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 0.3em 0.85em;
+  font-size: 0.75em;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dashboard-view-journey-btn:hover {
+  background: #eef2ff;
+}
+
+.dashboard-goal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.78em;
+  color: #6b7280;
+  margin-bottom: 0.6em;
+}
+
+.dashboard-goal-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.dashboard-goal-progress-track {
   flex: 1;
-  width: 35rem;
-  background: #f9f9f9;
-  padding: 1.6rem;
-  border-radius: 1rem;
-  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  height: 0.4em;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-section h4 {
-  margin-top: 0;
-  font-size: 1.2rem;
+.dashboard-goal-progress-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 999px;
 }
 
-.dashboard-short-tasks,
-.dashboard-long-goals {
-  margin-bottom: 1rem;
-  padding: 0.7rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
+.dashboard-goal-progress-percent {
+  font-size: 0.78em;
+  font-weight: 700;
+  color: #4f46e5;
+  min-width: 2.2em;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ---------- floating add button ---------- */
+.plus-btn {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  width: 3.2em;
+  height: 3.2em;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+.plus-btn:hover {
+  background: #4338ca;
 }

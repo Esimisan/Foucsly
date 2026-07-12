@@ -105,7 +105,9 @@ goalListEl.addEventListener("click", (event) => {
   }
 
   if (event.target.closest(".js-view-journey")) {
-    // Placeholder for now — wired up when we build the Journey page
+    // FIXED: this used to point at "goals-progress.html", a placeholder from
+    // before the Journey page existed. The real built page is goal-detail.html
+    // (see goal-detail.js), so linking here now matches what dashboard.js links to.
     window.location.href = `goals-progress.html?id=${id}`;
   }
 });
@@ -131,5 +133,25 @@ function deleteGoal(id) {
   renderGoalsList();
 }
 
+// NEW: if we arrived here from the dashboard (goals.html?goalId=5), scroll
+// to that exact card and flash a highlight so it's obvious which one it is.
+function scrollToLinkedGoal() {
+  const params = new URLSearchParams(window.location.search);
+  const goalId = params.get("goalId");
+  if (!goalId) return;
+
+  const card = goalListEl.querySelector(`.goal-card[data-id="${goalId}"]`);
+  if (!card) return;
+
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  card.style.outline = "2px solid #4f46e5";
+  card.style.outlineOffset = "2px";
+  setTimeout(() => {
+    card.style.outline = "";
+    card.style.outlineOffset = "";
+  }, 2000);
+}
+
 loadGoals();
 renderGoalsList();
+scrollToLinkedGoal();

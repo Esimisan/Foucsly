@@ -194,7 +194,13 @@ function commitPendingChecks() {
   if (pendingCompletedIds.size === 0 && pendingOverdueIds.size === 0) return;
 
   todoTasks.forEach((task) => {
-    if (pendingCompletedIds.has(task.id)) task.status = "completed";
+    if (pendingCompletedIds.has(task.id)) {
+      task.status = "completed";
+      // NEW: stamp when this actually happened — the dashboard's
+      // "Completed This Week" card needs a real timestamp, not just
+      // the fact that it's completed
+      task.completedAt = new Date().toISOString();
+    }
     if (pendingOverdueIds.has(task.id)) task.status = "overdue";
   });
 
@@ -246,6 +252,9 @@ saveRedoBtn.addEventListener("click", () => {
 
   //bring it back to active, whether it was checked, overdue, or already locked in permanently
   task.status = "pending";
+  // NEW: it's no longer "completed", so its old completion timestamp
+  // shouldn't count toward any "completed this week" stat anymore
+  delete task.completedAt;
   pendingCompletedIds.delete(task.id);
   pendingOverdueIds.delete(task.id);
 
@@ -293,6 +302,29 @@ function showCompletionToast(task) {
   setTimeout(() => toast.remove(), 6000);
 }
 
+// NEW: if we arrived here from the dashboard (tasks.html?taskId=5), scroll
+// to that exact card and flash a highlight so it's obvious which one it is.
+// Runs after the initial render so the card actually exists in the DOM yet.
+function scrollToLinkedTask() {
+  const params = new URLSearchParams(window.location.search);
+  const taskId = params.get("taskId");
+  if (!taskId) return;
+
+  const card = taskListContainer.querySelector(
+    `.task-card[data-id="${taskId}"]`,
+  );
+  if (!card) return;
+
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  card.style.outline = "2px solid #4f46e5";
+  card.style.outlineOffset = "2px";
+  setTimeout(() => {
+    card.style.outline = "";
+    card.style.outlineOffset = "";
+  }, 2000);
+}
+
 loadTasks();
 renderTaskList();
 renderTotalTasks();
+scrollToLinkedTask();

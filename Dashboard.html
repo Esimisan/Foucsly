@@ -1,163 +1,226 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style/dashboard.css">
-  <link rel="stylesheet" href="style/modal.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</head>
-<body>
-  
-  <div class="side-nav">
-    <p class="logo">Focusly</p>
-    <ul>
-      <li><a href="dashboard.html"><i class="fa-solid fa-border-all"></i> DashBoard</a></li>
-      <li><a href="tasks.html"><i class="fa-regular fa-square-check"></i> My Tasks</a></li>
-      <li><a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a></li>
-      <li><a href="focus.html"><i class="fa-solid fa-stopwatch"></i> Focus</a></li>
-      <li><a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a></li>
-    </ul>
-  </div>
-
-  <main class="main">
-
-  <div class="welcome">
-    <p class="welcome-msg">Good Afternoon, Misan 👋</p>
-    <p class="current-date js-current-date"></p>
-   </div>
-
-   <div class="today-reminders js-today-reminders"></div>
-    
-   <div class="reminder-cards">
-     <div class="due-day">
-      <h3 class="amount">0</h3>
-      <p>Due Today</p>
-     </div>
-     <div class="overdue">
-      <h3 class="amount">0</h3>
-      <p>Overdue</p>
-     </div>
-
-     <div class="goals-in-progress">
-      <h3 class="amount">0</h3>
-      <p>Goals in progress</p>
-     </div>
-     <div class="week completion">
-      <h3 class="amount">0</h3>
-      <p>Completed this week</p>
-     </div>
-   </div>
-
-    <div class="dashboard-tasks">
-      <section>
-
-      <h4>Short Term Tasks</h4>
-      <div class="dashboard-short-tasks">
-       <h5 class="card-header">Prepare Q3 budget report</h5>
-       <p class="card-date">Jun 17</p>
-       </div>
-      <div class="dashboard-short-tasks">
-       <h5 class="card-header">6am Morning run</h5>
-       <p class="card-date">Jun 17</p>
-       </div>
-      <div class="dashboard-short-tasks">
-       <h5 class="card-header">Meal prep for the week</h5>
-       <p class="card-date">Jun 17</p>
-       </div>
-       </section>
-      
-
-      <section>
-       <h4>Long Term Goals</h4>
-       <div class="dashboard-long-goals">
-         <h5 class="card-header">Lunch freelance portfolio website</h5>
-         <p class="card-date">Jun 17</p>
-       </div>
-       <div class="dashboard-long-goals">
-         <h5 class="card-header">Read 24 books this year</h5>
-         <p class="card-date">Jun 17</p>
-       </div>
-       <div class="dashboard-long-goals">
-         <h5 class="card-header">save emergency forms</h5>
-         <p class="card-date">Jun 17</p>
-       </div>
-       </div>
-      </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style/dashboard.css" />
+    <link rel="stylesheet" href="style/modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo">Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html" class="active"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="focus.html"><i class="fa-solid fa-stopwatch"></i> Focus</a>
+        </li>
+        <li>
+          <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
+        </li>
+      </ul>
     </div>
 
-
-   
-    <button class="plus-btn js-open-modal">+</button>
-
-    <div class="modal js-modal">
-     <div class="modal-content">
-      <span class="close-modal js-close-modal">&times;</span>
-      <h2>New Item</h2>
-
-      <form>
-        <label>What are you creating?</label><br>
-        <input type="radio" id="type-task" name="item-type" class="js-type-task" value="task" checked>
-        <label for="type-task">Task (short-term) </label><br>
-        <input type="radio" id="type-goal" name="item-type" class="js-type-goal" value="goal">
-        <label for="type-goal">Goal (long-term) </label><br><br>
-
-        <label>Title:</label><br>
-        <input type="text" name="title" class="title js-title" placeholder="What do you want to acccomplish?"><br><br>
-
-        <label>Description:</label><br>
-        <textarea name="description" class=" description js-description" placeholder="Add detais, context or notes..."></textarea><br><br>
-
-        <label>Due Date</label><br>
-        <input type="date" name="due" class="date js-date" placeholder="Select a date"><br><br>
-
-        <div class="js-task-only-fields">
-          <label>Due Time</label><br>
-          <input type="time" name="due-time" class="time js-time"><br><br>
-        </div>
-
-        <label>Priority:</label><br>
-        <select name="select-priority" class="js-priority">
-          <option value="high">High</option>
-          <option value="medium" selected>Medium</option>
-          <option value="low">Low</option>
-        </select><br><br>
-
-        <label>Category</label><br>
-        <select name="category" class="js-task-category">
-          <option value="work">Work</option>
-          <option value="personal">Personal</option>
-          <option value="finance">Finance</option>
-          <option value="learning">Learning</option>
-          <option value="create-option">+ Create custom...</option>
-        </select><br><br>
-
-         <div class="js-goal-only-fields" style="display: none;">
-            <label>Milestones:</label><br />
-            <div class="milestone-list js-milestone-list"></div>
-            <button type="button" class="add-milestone-btn js-add-milestone">
-              Milestone(s) +
-            </button>
-            <br /><br />
+    <main class="main">
+      <div class="dashboard-content">
+        <div class="dashboard-top-row">
+          <div class="welcome">
+            <!-- greeting text left as-is, per Misan's own setup -->
+            <p class="welcome-msg">Good Afternoon, Misan 👋</p>
+            <p class="current-date js-current-date"></p>
           </div>
 
-        <button type="button" class="js-create-task">Create Task</button>
-      </form>
-     </div>
-    </div>
+          <div class="dashboard-search-wrap">
+            <i class="fa-solid fa-magnifying-glass dashboard-search-icon"></i>
+            <input
+              type="text"
+              class="dashboard-search-input js-dashboard-search"
+              placeholder="Search anything..."
+              autocomplete="off"
+            />
+            <div
+              class="dashboard-search-results js-dashboard-search-results"
+            ></div>
+          </div>
+        </div>
 
+        <div class="reminder-cards">
+          <div class="stat-card due-day">
+            <div class="stat-icon"><i class="fa-regular fa-clock"></i></div>
+            <div>
+              <h3 class="amount js-due-today-count">0</h3>
+              <p>Due Today</p>
+            </div>
+          </div>
 
-   
+          <div class="stat-card overdue">
+            <div class="stat-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+              <h3 class="amount js-overdue-count">0</h3>
+              <p>Overdue</p>
+            </div>
+          </div>
 
+          <div class="stat-card goals-in-progress">
+            <div class="stat-icon">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+            <div>
+              <h3 class="amount js-goals-count">0</h3>
+              <p>Goals In Progress</p>
+            </div>
+          </div>
 
+          <div class="stat-card week-completion">
+            <div class="stat-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <h3 class="amount js-completed-count">0</h3>
+              <p>Completed This Week</p>
+            </div>
+          </div>
 
+          <div class="stat-card focus-time">
+            <div class="stat-icon"><i class="fa-solid fa-fire"></i></div>
+            <div>
+              <h3 class="amount js-focus-time">0m</h3>
+              <p>Focused This Week</p>
+            </div>
+          </div>
+        </div>
 
-  </main>
+        <div class="dashboard-tasks">
+          <section>
+            <div class="section-header">
+              <span class="status-dot task-dot"></span>
+              <h4>Short-Term Tasks</h4>
+              <span class="dashboard-count-badge js-task-snippet-count"></span>
+            </div>
+            <div class="dashboard-snippet-list js-dashboard-task-list"></div>
+          </section>
 
+          <section>
+            <div class="section-header">
+              <span class="status-dot goal-dot"></span>
+              <h4>Long-Term Goals</h4>
+              <span class="dashboard-count-badge js-goal-snippet-count"></span>
+            </div>
+            <div class="dashboard-snippet-list js-dashboard-goal-list"></div>
+          </section>
+        </div>
+      </div>
 
-  
-  <script src="script/modal.js"></script>
-  <script src="script/dashboard.js"></script>
-</body>
+      <button class="plus-btn js-open-modal">+</button>
+
+      <div class="modal js-modal">
+        <div class="modal-content">
+          <span class="close-modal js-close-modal">&times;</span>
+          <h2>New Item</h2>
+
+          <form>
+            <label>What are you creating?</label><br />
+            <input
+              type="radio"
+              id="type-task"
+              name="item-type"
+              class="js-type-task"
+              value="task"
+              checked
+            />
+            <label for="type-task">Task (short-term) </label><br />
+            <input
+              type="radio"
+              id="type-goal"
+              name="item-type"
+              class="js-type-goal"
+              value="goal"
+            />
+            <label for="type-goal">Goal (long-term) </label><br /><br />
+
+            <label>Title:</label><br />
+            <input
+              type="text"
+              name="title"
+              class="title js-title"
+              placeholder="What do you want to acccomplish?"
+            /><br /><br />
+
+            <label>Description:</label><br />
+            <textarea
+              name="description"
+              class="description js-description"
+              placeholder="Add detais, context or notes..."
+            ></textarea
+            ><br /><br />
+
+            <label>Due Date</label><br />
+            <input
+              type="date"
+              name="due"
+              class="date js-date"
+              placeholder="Select a date"
+            /><br /><br />
+
+            <div class="js-task-only-fields">
+              <label>Due Time</label><br />
+              <input
+                type="time"
+                name="due-time"
+                class="time js-time"
+              /><br /><br />
+            </div>
+
+            <label>Priority:</label><br />
+            <select name="select-priority" class="js-priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option></select
+            ><br /><br />
+
+            <label>Category</label><br />
+            <select name="category" class="js-task-category">
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="finance">Finance</option>
+              <option value="learning">Learning</option>
+              <option value="create-option">+ Create custom...</option></select
+            ><br /><br />
+
+            <div class="js-goal-only-fields" style="display: none">
+              <label>Milestones:</label><br />
+              <div class="milestone-list js-milestone-list"></div>
+              <button type="button" class="add-milestone-btn js-add-milestone">
+                Milestone(s) +
+              </button>
+              <br /><br />
+            </div>
+
+            <button type="button" class="js-create-task">Create Task</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="script/modal.js"></script>
+    <script src="script/dashboard.js"></script>
+  </body>
 </html>
