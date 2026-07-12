@@ -3,6 +3,16 @@
    Reuses .task-card / .task-menu / .tag from tasks.css for the
    shared shell — only the goal-specific pieces live here.
    ============================================================ */
+
+body {
+  background-color: #faf7f0;
+}
+
+/* REMOVED: this file used to redefine .side-nav a.active with the old
+   dark-theme gray (#575757), loaded AFTER tasks.css and silently
+   overriding its new purple active-state. tasks.css now owns nav
+   styling for every page that links it — no override needed here. */
+
 .goal-list {
   display: flex;
   flex-direction: column;
@@ -41,7 +51,7 @@
 
 .view-journey-btn {
   background: #ffffff;
-  color: #4f46e5;
+  color: #534ab7;
   border: 1px solid #c7d2fe;
   border-radius: 999px;
   padding: 0.4em 1em;
@@ -88,7 +98,7 @@
 .goal-progress-percent {
   font-size: 0.85em;
   font-weight: 700;
-  color: #4f46e5;
+  color: #534ab7;
   min-width: 2.5em;
   text-align: right;
   flex-shrink: 0;

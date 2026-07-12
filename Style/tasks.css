@@ -5,26 +5,39 @@ html {
 * {
   box-sizing: border-box; /* padding/border are included in width, not added on top */
 }
+
 body {
   margin: 0;
   font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  background: #f4f5f7;
+  background-color: #faf7f0;
   color: #111827;
+  /* FIXED: side-nav is fixed/12em wide, but nothing used to reserve that
+     space — every page's content wrapper was centering itself across the
+     FULL viewport width, including the strip hidden behind the sidebar.
+     This single line fixes it everywhere tasks.css is loaded (tasks,
+     goals, focus, goal-detail all link this file). */
+  padding-left: 12em;
 }
 
+/* ============================================================
+   SIDE NAV — white + purple, matches the dashboard's look so
+   every page in the app shares one nav design
+   ============================================================ */
 .side-nav {
   height: 100%;
-  width: 9em;
+  width: 12em;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #171515;
+  background-color: #ffffff;
+  border-right: 1px solid #f0ede4;
   padding-top: 0.7em;
 }
 
 .side-nav p {
-  color: #ddd;
+  color: #534ab7;
   font-size: 1.2em;
+  font-weight: 600;
   margin: 1.2em 0.9em;
 }
 
@@ -43,13 +56,18 @@ body {
   padding: 0.6em 1em;
   text-decoration: none;
   font-size: 0.8em;
-  color: #ddd;
+  color: #575757;
   margin-bottom: 1.2em;
+  border-radius: 10px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.side-nav a:hover {
-  background-color: #575757;
-  color: white;
+.side-nav a:hover,
+.side-nav a.active {
+  background-color: rgba(83, 74, 183, 0.15);
+  color: #534ab7;
 }
 
 .task-page {
@@ -194,7 +212,7 @@ body {
 
 .tag {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
   padding: 0.2em 0.65em;
   border-radius: 1em;
   font-weight: 600;

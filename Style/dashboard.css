@@ -1,30 +1,32 @@
 /* ============================================================
    DASHBOARD
    Reuses colors/spacing conventions from tasks.css/goals.css/focus.css:
-   purple #4f46e5, green #22c55e/#059669, red #dc2626/#ef4444, amber #f59e0b,
+   purple #534ab7, green #22c55e/#059669, red #dc2626/#ef4444, amber #f59e0b,
    gray #6b7280, card radius 0.9em, border #edeef0, em-based sizing throughout.
    ============================================================ */
 
 body {
   margin: 0;
   font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  background: #f4f5f7;
+  background: #faf7f0;
   color: #111827;
 }
 
 .side-nav {
   height: 100%;
-  width: 9em;
+  width: 12em;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #171515;
+  background-color: #ffffff;
+  border-right: 1px solid #f0ede4;
   padding-top: 0.7em;
 }
 
 .side-nav p {
-  color: #ddd;
+  color: #534ab7;
   font-size: 1.2em;
+  font-weight: 600;
   margin: 1.2em 0.9em;
 }
 
@@ -43,23 +45,29 @@ body {
   padding: 0.6em 1em;
   text-decoration: none;
   font-size: 0.8em;
-  color: #ddd;
+  color: #575757;
   margin-bottom: 1.2em;
+  border-radius: 10px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .side-nav a:hover,
 .side-nav a.active {
-  background-color: #575757;
-  color: white;
+  background-color: rgba(83, 74, 183, 0.15);
+  color: #534ab7;
 }
 
 .main {
-  margin-left: 9em;
+  margin-left: 12em;
   padding: 2em 2.2em;
   box-sizing: border-box;
   /* width, not max-width — this is the full remaining strip beside the
-     sidebar; .dashboard-content below is what actually gets centered in it */
-  width: calc(100% - 9em);
+     sidebar; .dashboard-content below is what actually gets centered in it.
+     FIXED: this used to say 9em while .side-nav is 12em wide, so content
+     sat partway behind the sidebar. */
+  width: calc(100% - 12em);
 }
 
 .dashboard-content {
@@ -119,7 +127,7 @@ body {
 
 .dashboard-search-input:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: #534ab7;
 }
 
 .dashboard-search-results {
@@ -171,7 +179,7 @@ body {
 
 .dashboard-search-result-icon.task {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
 }
 
 .dashboard-search-result-icon.goal {
@@ -234,7 +242,7 @@ body {
 
 .due-day .stat-icon {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
 }
 
 .overdue .stat-icon {
@@ -254,7 +262,7 @@ body {
 
 .focus-time .stat-icon {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
 }
 
 .stat-card .amount {
@@ -400,7 +408,7 @@ body {
 
 .tag {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
   padding: 0.2em 0.65em;
   border-radius: 1em;
   font-weight: 600;
@@ -436,7 +444,7 @@ body {
 
 .dashboard-view-journey-btn {
   background: #ffffff;
-  color: #4f46e5;
+  color: #534ab7;
   border: 1px solid #c7d2fe;
   border-radius: 999px;
   padding: 0.3em 0.85em;
@@ -483,28 +491,12 @@ body {
 .dashboard-goal-progress-percent {
   font-size: 0.78em;
   font-weight: 700;
-  color: #4f46e5;
+  color: #534ab7;
   min-width: 2.2em;
   text-align: right;
   flex-shrink: 0;
 }
 
-/* ---------- floating add button ---------- */
-.plus-btn {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
-  width: 3.2em;
-  height: 3.2em;
-  border-radius: 50%;
-  background: #4f46e5;
-  color: #ffffff;
-  border: none;
-  font-size: 1.4em;
-  cursor: pointer;
-  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
-}
-
-.plus-btn:hover {
-  background: #4338ca;
-}
+/* NOTE: .plus-btn now lives in modal.css (loaded after this file), since
+   the "+" button is shared across every page and belongs with the modal
+   it opens, not duplicated per-page. */

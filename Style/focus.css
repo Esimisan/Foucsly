@@ -1,9 +1,13 @@
 /* ============================================================
    FOCUS PAGE
    Reuses colors/spacing conventions from tasks.css:
-   purple #4f46e5, green #22c55e/#059669, red #dc2626, gray #6b7280,
+   purple #534ab7, green #22c55e/#059669, red #dc2626, gray #6b7280,
    card radius 0.9em, border #edeef0, em-based sizing throughout.
    ============================================================ */
+
+body {
+  background-color: #faf7f0;
+}
 
 .focus-page {
   max-width: 40em;
@@ -11,11 +15,10 @@
   padding: 2em 1.5em;
 }
 
-/* highlight for the current nav link — tasks.css doesn't define this yet */
-.side-nav a.active {
-  background-color: #575757;
-  color: white;
-}
+/* REMOVED: this file used to redefine .side-nav a.active with the old
+   dark-theme gray (#575757), which loaded AFTER tasks.css and silently
+   overrode its new purple active-state. tasks.css now owns the nav
+   styling for every page that links it — no override needed here. */
 
 /* ---------- header + weekly accumulator ---------- */
 .focus-header {
@@ -44,14 +47,14 @@
 }
 
 .focus-accumulator i {
-  color: #4f46e5;
+  color: #534ab7;
   font-size: 1.2em;
 }
 
 .focus-accumulator-value {
   font-weight: 700;
   font-size: 1.05em;
-  color: #4f46e5;
+  color: #534ab7;
   line-height: 1.2;
 }
 
@@ -90,7 +93,7 @@
   padding: 1em 1.1em;
   font-size: 0.9em;
   font-weight: 600;
-  color: #4f46e5;
+  color: #534ab7;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -104,7 +107,7 @@
 
 .focus-choice-btn:hover {
   background: #eef2ff;
-  border-color: #4f46e5;
+  border-color: #534ab7;
   transform: translateY(-1px);
 }
 
@@ -136,7 +139,7 @@
 }
 
 .focus-back-btn:hover {
-  color: #4f46e5;
+  color: #534ab7;
 }
 
 .focus-search-input {
@@ -152,7 +155,7 @@
 
 .focus-search-input:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: #534ab7;
 }
 
 .focus-item-list {
@@ -238,8 +241,8 @@
 }
 
 .focus-duration-btn.selected {
-  background: #4f46e5;
-  border-color: #4f46e5;
+  background: #534ab7;
+  border-color: #534ab7;
   color: #ffffff;
 }
 
@@ -263,11 +266,11 @@
 
 .focus-custom-duration input:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: #534ab7;
 }
 
 .focus-start-btn {
-  background: #4f46e5;
+  background: #534ab7;
   color: #ffffff;
   border: none;
   border-radius: 0.7em;
@@ -280,11 +283,11 @@
 }
 
 .focus-start-btn:hover:not(:disabled) {
-  background: #4338ca;
+  background: #453c9c;
 }
 
 .focus-start-btn:disabled {
-  background: #c7d2fe;
+  background: #c7bce8;
   cursor: not-allowed;
 }
 
@@ -315,7 +318,7 @@
 .focus-countdown {
   font-size: 2em;
   font-weight: 700;
-  color: #4f46e5;
+  color: #534ab7;
   font-variant-numeric: tabular-nums;
 }
 
@@ -367,7 +370,7 @@
 }
 
 .focus-restart-btn {
-  background: #4f46e5;
+  background: #534ab7;
   color: #ffffff;
   border: none;
   border-radius: 0.7em;
@@ -379,7 +382,7 @@
 }
 
 .focus-restart-btn:hover {
-  background: #4338ca;
+  background: #453c9c;
 }
 
 .focus-done-btn {
@@ -463,7 +466,7 @@
 
 .focus-history-icon.task {
   background: #eef2ff;
-  color: #4f46e5;
+  color: #534ab7;
 }
 
 .focus-history-icon.goal {
@@ -496,7 +499,7 @@
 
 .focus-history-duration {
   font-weight: 700;
-  color: #4f46e5;
+  color: #534ab7;
   font-size: 0.9em;
   white-space: nowrap;
   flex-shrink: 0;

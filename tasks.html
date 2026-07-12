@@ -6,7 +6,7 @@
     <title>My Tasks</title>
     <link rel="stylesheet" href="style/tasks.css" />
     <link rel="stylesheet" href="style/modal.css" />
-    
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -22,7 +22,7 @@
           >
         </li>
         <li>
-          <a href="tasks.html"
+          <a href="tasks.html" class="active"
             ><i class="fa-regular fa-square-check"></i> My Tasks</a
           >
         </li>
@@ -39,8 +39,7 @@
     </div>
 
     <main>
-      <div class="main-content">
-      </div>
+      <div class="main-content"></div>
       <div class="task-page">
         <div class="page-header">
           <h1>My Tasks</h1>
@@ -54,119 +53,172 @@
 
         <div class="task-list js-task-list"></div>
 
-          
-      <button class="plus-btn js-open-modal">+</button>
+        <button class="plus-btn js-open-modal">+</button>
 
-    <div class="modal js-modal">
-      <div class="modal-content">
-        <span class="close-modal js-close-modal">&times;</span>
-        <h2>New Item</h2>
+        <div class="modal js-modal">
+          <div class="modal-content">
+            <span class="close-modal js-close-modal">&times;</span>
+            <h2>New Item</h2>
 
-        <form>
-          <label>What are you creating?</label><br />
-          <input
-            type="radio"
-            id="type-task"
-            name="item-type"
-            class="js-type-task"
-            value="task"
-            checked
-          />
-          <label for="type-task">Task (short-term) </label><br />
-          <input
-            type="radio"
-            id="type-goal"
-            name="item-type"
-            class="js-type-goal"
-            value="goal"
-          />
-          <label for="type-goal">Goal (long-term) </label><br /><br />
+            <form>
+              <div class="form-group">
+                <label>What are you creating?</label>
+                <div class="type-btn-group">
+                  <label class="type-btn-label">
+                    <input
+                      type="radio"
+                      id="type-task"
+                      name="item-type"
+                      class="js-type-task"
+                      value="task"
+                      checked
+                    />
+                    <span>Task (short-term)</span>
+                  </label>
+                  <label class="type-btn-label">
+                    <input
+                      type="radio"
+                      id="type-goal"
+                      name="item-type"
+                      class="js-type-goal"
+                      value="goal"
+                    />
+                    <span>Goal (long-term)</span>
+                  </label>
+                </div>
+              </div>
 
-          <label>Title:</label><br />
-          <input
-            type="text"
-            name="title"
-            class="title js-title"
-            placeholder="What do you want to acccomplish?"
-          /><br /><br />
+              <div class="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  class="js-title"
+                  placeholder="What do you want to acccomplish?"
+                />
+              </div>
 
-          <label>Description:</label><br />
-          <textarea
-            name="description"
-            class="description js-description"
-            placeholder="Add detais, context or notes..."
-          ></textarea
-          ><br /><br />
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  class="js-description"
+                  placeholder="Add detais, context or notes..."
+                ></textarea>
+              </div>
 
-          <label>Due Date</label><br />
-          <input
-            type="date"
-            name="due"
-            class="date js-date"
-            placeholder="Select a date"
-          /><br /><br />
+              <div class="form-group">
+                <label>Due Date &amp; Time</label>
+                <div class="due-date-time-row">
+                  <div class="input-icon-wrap">
+                    <i class="fa-regular fa-calendar"></i>
+                    <input
+                      type="date"
+                      name="due"
+                      class="js-date"
+                      placeholder="Select a date"
+                    />
+                  </div>
+                  <div
+                    class="input-icon-wrap time-input-wrap js-task-only-fields"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <input type="time" name="due-time" class="js-time" />
+                  </div>
+                </div>
+              </div>
 
-          <div class="js-task-only-fields">
-            <label>Due Time</label><br />
-            <input
-              type="time"
-              name="due-time"
-              class="time js-time"
-            /><br /><br />
+              <div class="form-group">
+                <label>Priority</label>
+                <div class="priority-btn-group">
+                  <button
+                    type="button"
+                    class="priority-btn js-priority-btn"
+                    data-priority="high"
+                  >
+                    High
+                  </button>
+                  <button
+                    type="button"
+                    class="priority-btn js-priority-btn"
+                    data-priority="medium"
+                  >
+                    Medium
+                  </button>
+                  <button
+                    type="button"
+                    class="priority-btn js-priority-btn"
+                    data-priority="low"
+                  >
+                    Low
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Category</label>
+                <select name="category" class="js-task-category">
+                  <option value="work">Work</option>
+                  <option value="personal">Personal</option>
+                  <option value="finance">Finance</option>
+                  <option value="learning">Learning</option>
+                  <option value="create-option">+ Create custom...</option>
+                </select>
+              </div>
+
+              <div class="js-goal-only-fields form-group" style="display: none">
+                <label>Milestones</label>
+                <div class="milestone-list js-milestone-list"></div>
+                <button
+                  type="button"
+                  class="add-milestone-btn js-add-milestone"
+                >
+                  Milestone(s) +
+                </button>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="cancel-btn js-cancel-modal">
+                  Cancel
+                </button>
+                <button type="button" class="create-btn js-create-task">
+                  Create Item
+                </button>
+              </div>
+            </form>
           </div>
+        </div>
 
-          <label>Priority:</label><br />
-          <select name="select-priority" class="js-priority">
-            <option value="high">High</option>
-            <option value="medium" selected>Medium</option>
-            <option value="low">Low</option></select
-          ><br /><br />
+        <div class="modal js-redo-modal">
+          <div class="modal-content">
+            <span class="close-modal js-close-redo-modal">&times;</span>
+            <h2>Redo Task</h2>
 
-          <label>Category</label><br />
-          <select name="category" class="js-task-category">
-            <option value="work">Work</option>
-            <option value="personal">Personal</option>
-            <option value="finance">Finance</option>
-            <option value="learning">Learning</option>
-            <option value="create-option">+ Create custom...</option></select
-          ><br /><br />
-          
-          <div class="js-goal-only-fields" style="display: none;">
-            <label>Milestones:</label><br />
-            <div class="milestone-list js-milestone-list"></div>
-            <button type="button" class="add-milestone-btn js-add-milestone">
-              Milestone(s) +
-            </button>
-            <br /><br />
+            <form>
+              <div class="form-group">
+                <label>New Due Date</label>
+                <input type="date" class="js-redo-date" />
+              </div>
+
+              <div class="form-group">
+                <label>New Due Time</label>
+                <input type="time" class="js-redo-time" />
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="cancel-btn js-cancel-redo-modal">
+                  Cancel
+                </button>
+                <button type="button" class="create-btn js-save-redo">
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
-
-
-          <button type="button" class="js-create-task">Create Task</button>
-        </form>
+        </div>
       </div>
-    </div>
-
-
-    <div class="modal js-redo-modal">
-  <div class="modal-content">
-    <span class="close-modal js-close-redo-modal">&times;</span>
-    <h2>Redo Task</h2>
-
-    <form>
-      <label>New Due Date</label><br />
-      <input type="date" class="js-redo-date" /><br /><br />
-
-      <label>New Due Time</label><br />
-      <input type="time" class="js-redo-time" /><br /><br />
-
-      <button type="button" class="js-save-redo">Save Changes</button>
-    </form>
-  </div>
-</div>
     </main>
 
-    
-   
     <script src="script/modal.js"></script>
     <script src="script/tasks.js"></script>
   </body>

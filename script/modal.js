@@ -1,6 +1,7 @@
 const modal = document.querySelector(".js-modal");
 const openBtn = document.querySelector(".js-open-modal");
 const closeBtn = document.querySelector(".js-close-modal");
+const cancelBtn = document.querySelector(".js-cancel-modal");
 
 const openModal = () => {
   modal.style.display = "block";
@@ -34,7 +35,6 @@ const titleInput = document.querySelector(".js-title");
 const descriptionInput = document.querySelector(".js-description");
 const DateInput = document.querySelector(".js-date");
 const timeInput = document.querySelector(".js-time");
-const priorityInput = document.querySelector(".js-priority");
 const categoryInput = document.querySelector(".js-task-category");
 const createTaskbtn = document.querySelector(".js-create-task");
 
@@ -47,12 +47,30 @@ const goalOnlyFields = document.querySelector(".js-goal-only-fields");
 const milestoneListEl = document.querySelector(".js-milestone-list");
 const addMilestoneBtn = document.querySelector(".js-add-milestone");
 
+// NEW: priority is now a row of 3 buttons instead of a <select> — the
+// screenshot calls for each one to visually take on its priority color
+// once selected, using the same red/amber/green pairs as .priority-tag
+// in journey.css, so "High" looks the same everywhere in the app.
+const priorityButtons = document.querySelectorAll(".js-priority-btn");
+let selectedPriority = "medium";
+
+function setPriority(value) {
+  selectedPriority = value;
+  priorityButtons.forEach((btn) => {
+    btn.classList.toggle("selected", btn.dataset.priority === value);
+  });
+}
+
+priorityButtons.forEach((btn) => {
+  btn.addEventListener("click", () => setPriority(btn.dataset.priority));
+});
+
 function updateFormFieldsForType() {
   if (typeGoalRadio.checked) {
     taskOnlyFields.style.display = "none";
     goalOnlyFields.style.display = "block"; // NEW: show milestones for goals
   } else {
-    taskOnlyFields.style.display = "block";
+    taskOnlyFields.style.display = "flex"; // flex, not block — sits inside the due-date-time row
     goalOnlyFields.style.display = "none"; // NEW: hide milestones for tasks
   }
 }
@@ -122,7 +140,7 @@ function resetForm() {
   descriptionInput.value = "";
   DateInput.value = "";
   timeInput.value = "";
-  priorityInput.value = "medium";
+  setPriority("medium");
   categoryInput.value = "work";
 
   // NEW: default to Goal if we're on the goals page, Task otherwise
@@ -141,7 +159,7 @@ function resetForm() {
 
   editingId = null;
   editingType = null;
-  createTaskbtn.textContent = "Create Task";
+  createTaskbtn.textContent = "Create Item";
 }
 
 function createItem() {
@@ -162,7 +180,7 @@ function createItem() {
       title,
       description,
       dueDate,
-      priority: priorityInput.value,
+      priority: selectedPriority,
       category,
       status: "pending",
       milestones, // NEW: replaces the old manual "progress" field
@@ -176,7 +194,7 @@ function createItem() {
       description,
       dueDate,
       dueTime: timeInput.value,
-      priority: priorityInput.value,
+      priority: selectedPriority,
       category,
       status: "pending",
     };
@@ -197,7 +215,7 @@ function updateItem() {
     task.description = description;
     task.dueDate = dueDate;
     task.dueTime = timeInput.value;
-    task.priority = priorityInput.value;
+    task.priority = selectedPriority;
     task.category = category;
   } else if (editingType === "goal") {
     const goal = goals.find((g) => g.id === editingId);
@@ -205,7 +223,7 @@ function updateItem() {
     goal.title = title;
     goal.description = description;
     goal.dueDate = dueDate;
-    goal.priority = priorityInput.value;
+    goal.priority = selectedPriority;
     goal.category = category;
 
     // NEW: rebuild milestones from the draft (completed status is preserved
@@ -223,7 +241,7 @@ function openEditModal(item, type) {
   titleInput.value = item.title;
   descriptionInput.value = item.description || "";
   DateInput.value = item.dueDate;
-  priorityInput.value = item.priority;
+  setPriority(item.priority);
   categoryInput.value = item.category;
 
   if (type === "task") {
@@ -274,4 +292,10 @@ openBtn.addEventListener("click", () => {
   openModal();
 });
 closeBtn.addEventListener("click", closeModal);
+
+// NEW: Cancel button — the screenshot's footer has both Cancel and
+// Create Item, but only Create existed before. Cancel just closes
+// without saving, same as clicking the X or outside the modal.
+if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
+
 window.addEventListener("click", outsideClick);

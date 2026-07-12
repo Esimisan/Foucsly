@@ -1,41 +1,222 @@
-.plus-btn {
-  position: fixed;
-  bottom: 1.8em;
-  right: 1.8em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 35%;
-  width: 2em;
-  height: 2em;
-  font-size: 2em;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+/* ============================================================
+   NEW ITEM MODAL
+   Warm/cream form fields (matches the #faf7f0 page background),
+   segmented pill controls instead of native radios/selects for
+   Type and Priority, priority colors reused from journey.css's
+   .priority-tag palette so the whole app stays consistent.
+   ============================================================ */
 
 .modal {
   display: none;
   position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
   z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
+  padding: 3em 1em;
 }
 
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 5em;
-  border-radius: 0.5em;
+  position: relative;
+  background: #ffffff;
+  margin: 0 auto;
+  padding: 1.8em 2em 2em;
+  border-radius: 1.1em;
   width: 100%;
-  max-height: 85vh;
-  max-width: 17em;
+  max-width: 28em;
+  max-height: 88vh;
   overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
+.close-modal {
+  position: absolute;
+  top: 1.7em;
+  right: 1.7em;
+  font-size: 1.4em;
+  line-height: 1;
+  color: #111827;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin: 0 0 1.3em 0;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #f0ede4;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* ---------- shared field rhythm ---------- */
+.form-group {
+  margin-bottom: 1.2em;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 0.5em;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content input[type="time"],
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f1eee5;
+  border: 1.5px solid transparent;
+  border-radius: 0.8em;
+  padding: 0.75em 0.9em;
+  font-family: inherit;
+  font-size: 0.9em;
+  color: #111827;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+  outline: none;
+  border-color: #534ab7;
+  background: #ffffff;
+}
+
+.modal-content textarea {
+  min-height: 5em;
+  resize: vertical;
+}
+
+.modal-content select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9em center;
+  padding-right: 2.4em;
+}
+
+/* ---------- Task / Goal segmented choice ---------- */
+.type-btn-group {
+  display: flex;
+  gap: 0.6em;
+}
+
+.type-btn-label {
+  flex: 1;
+  position: relative;
+}
+
+.type-btn-label input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.type-btn-label span {
+  display: block;
+  text-align: center;
+  padding: 0.75em 0.6em;
+  border: 1.5px solid #e5e1d6;
+  border-radius: 0.8em;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.type-btn-label input:checked + span {
+  background: #ede9fe;
+  border-color: #534ab7;
+  color: #534ab7;
+}
+
+.type-btn-label input:disabled + span {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Due Date & Time row ---------- */
+.due-date-time-row {
+  display: flex;
+  gap: 0.6em;
+}
+
+.input-icon-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.input-icon-wrap i {
+  position: absolute;
+  left: 0.9em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+.input-icon-wrap input {
+  padding-left: 2.4em !important;
+}
+
+.time-input-wrap {
+  flex: 0 0 8.5em;
+}
+
+/* ---------- Priority segmented buttons — colors match
+   .priority-tag in journey.css, so a "High" task looks the
+   same red everywhere in the app, not just in this modal ---------- */
+.priority-btn-group {
+  display: flex;
+  gap: 0.6em;
+}
+
+.priority-btn {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #e5e1d6;
+  border-radius: 0.8em;
+  padding: 0.75em 0.5em;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.priority-btn:hover {
+  border-color: #c7c2b3;
+}
+
+.priority-btn.selected[data-priority="high"] {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.priority-btn.selected[data-priority="medium"] {
+  background: #fef3c7;
+  border-color: #fcd34d;
+  color: #d97706;
+}
+
+.priority-btn.selected[data-priority="low"] {
+  background: #dcfce7;
+  border-color: #86efac;
+  color: #16a34a;
+}
+
+/* ---------- Milestones (goal-only fields) ---------- */
 .milestone-row {
   display: flex;
   align-items: center;
@@ -52,9 +233,18 @@
 
 .milestone-input {
   flex: 1;
-  padding: 0.5em 0.7em;
-  border: 1px solid #d1d5db;
-  border-radius: 0.4em;
+  background: #f1eee5;
+  padding: 0.6em 0.8em;
+  border: 1.5px solid transparent;
+  border-radius: 0.6em;
+  font-family: inherit;
+  font-size: 0.9em;
+}
+
+.milestone-input:focus {
+  outline: none;
+  border-color: #534ab7;
+  background: #ffffff;
 }
 
 .milestone-remove {
@@ -68,17 +258,77 @@
 }
 
 .add-milestone-btn {
-  background: #eef2ff;
-  color: #4f46e5;
-  border: 1px solid #c7d2fe;
-  border-radius: 0.5em;
-  padding: 0.5em 0.9em;
+  background: #ede9fe;
+  color: #534ab7;
+  border: 1px solid #ccc2f0;
+  border-radius: 0.6em;
+  padding: 0.55em 0.9em;
   font-weight: 600;
+  font-size: 0.85em;
   cursor: pointer;
 }
 
-.close-modal {
-  float: right;
+.add-milestone-btn:hover {
+  background: #e0d9fc;
+}
+
+/* ---------- footer buttons ---------- */
+.modal-footer {
+  display: flex;
+  gap: 0.7em;
+  margin-top: 1.6em;
+  padding-top: 1.2em;
+  border-top: 1px solid #f0ede4;
+}
+
+.cancel-btn {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #e5e1d6;
+  border-radius: 0.8em;
+  padding: 0.8em;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #374151;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #f9fafb;
+}
+
+.create-btn {
+  flex: 1.4;
+  background: #534ab7;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.8em;
+  padding: 0.8em;
+  font-weight: 700;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: #453c9c;
+}
+
+/* ---------- floating add button ---------- */
+.plus-btn {
+  position: fixed;
+  bottom: 1.8em;
+  right: 1.8em;
+  background: #534ab7;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 3.2em;
+  height: 3.2em;
   font-size: 1.5em;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(83, 74, 183, 0.35);
+}
+
+.plus-btn:hover {
+  background: #453c9c;
 }

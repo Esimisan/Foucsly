@@ -266,6 +266,12 @@ saveRedoBtn.addEventListener("click", () => {
 
 closeRedoBtn.addEventListener("click", closeRedoModal);
 
+// NEW: the redo modal's footer now has its own Cancel button, separate
+// from the X icon (which still uses .js-close-redo-modal) — needs its
+// own listener since querySelector only grabs the first match of a class
+const cancelRedoBtn = document.querySelector(".js-cancel-redo-modal");
+if (cancelRedoBtn) cancelRedoBtn.addEventListener("click", closeRedoModal);
+
 //closes the redo modal if you click outside it
 window.addEventListener("click", (event) => {
   if (event.target === redoModal) {
