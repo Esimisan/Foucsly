@@ -1,0 +1,279 @@
+/* settings.css */
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #faf7f0;
+  color: #111827;
+  padding-left: 25em; /* offset for the fixed sidebar, same as tasks.css */
+}
+
+.side-nav {
+  height: 100%;
+  width: 12em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-right: 1px solid #f0ede4;
+  padding-top: 0.7em;
+}
+
+.side-nav p {
+  color: #534ab7;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.2em 0.9em;
+}
+
+.side-nav ul {
+  list-style-type: none;
+  margin: 0.9em;
+  padding: 0;
+}
+
+.side-nav li {
+  margin: 0;
+}
+
+.side-nav a {
+  display: block;
+  padding: 0.6em 1em;
+  text-decoration: none;
+  font-size: 0.8em;
+  color: #575757;
+  margin-bottom: 1.2em;
+  border-radius: 10px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.side-nav a:hover,
+.side-nav a.active {
+  background-color: rgba(83, 74, 183, 0.15);
+  color: #534ab7;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-main {
+  padding: 2.5em 3em;
+  max-width: 40em;
+}
+
+.page-title {
+  font-size: 1.6em;
+  color: #2b2b2b;
+  margin-bottom: 1.5em;
+}
+
+.settings-card {
+  background-color: #ffffff;
+  border-radius: 1em;
+  padding: 2em;
+  margin-bottom: 1.5em;
+  box-shadow: 0 0.3em 1em rgba(0, 0, 0, 0.04);
+}
+
+.settings-card h2 {
+  font-size: 1.15em;
+  color: #2b2b2b;
+  margin-bottom: 0.25em;
+}
+
+.settings-card-sub {
+  font-size: 0.85em;
+  color: #8a8a8a;
+  margin-bottom: 1.5em;
+}
+
+/* reusing the same input-field / input-wrap look as the register page */
+.input-field {
+  margin-bottom: 1.25em;
+}
+
+.input-field label {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 0.5em;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e0da;
+  border-radius: 0.6em;
+  padding: 0.75em 1em;
+  background-color: #faf9f6;
+}
+
+.input-wrap:focus-within {
+  border-color: #534ab7;
+  background-color: #ffffff;
+}
+
+.input-wrap i {
+  color: #a8a4bd;
+  font-size: 0.9em;
+  margin-right: 0.75em;
+}
+
+.input-wrap input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95em;
+  color: #2b2b2b;
+}
+
+.save-btn {
+  padding: 0.7em 1.5em;
+  border: none;
+  border-radius: 0.6em;
+  background-color: #534ab7;
+  color: #ffffff;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #453d9c;
+}
+
+.profile-message {
+  display: block;
+  font-size: 0.85em;
+  color: #3a8a4f;
+  margin-bottom: 1em;
+}
+
+.profile-message.error-text {
+  color: #d9534f;
+}
+
+/* danger zone rows */
+.danger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+  border-top: 1px solid #f0eee7;
+}
+
+.danger-row:first-of-type {
+  border-top: none;
+}
+
+.danger-row-title {
+  font-size: 0.95em;
+  color: #2b2b2b;
+  margin-bottom: 0.2em;
+}
+
+.danger-row-desc {
+  font-size: 0.8em;
+  color: #8a8a8a;
+  max-width: 22em;
+}
+
+.outline-btn {
+  padding: 0.6em 1.2em;
+  border: 1px solid #d8d5cd;
+  border-radius: 0.6em;
+  background-color: transparent;
+  color: #4a4a4a;
+  font-size: 0.85em;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.outline-btn:hover {
+  background-color: #f5f3ee;
+}
+
+.danger-btn {
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 0.6em;
+  background-color: #d9534f;
+  color: #ffffff;
+  font-size: 0.85em;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.danger-btn:hover {
+  background-color: #c9302c;
+}
+
+/* confirm popup */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* two-class selector beats the single-class .confirm-overlay rule above,
+   regardless of source order - this is what actually keeps it hidden
+   until settings.js removes the class */
+.confirm-overlay.hidden {
+  display: none;
+}
+
+.confirm-box {
+  background-color: #ffffff;
+  border-radius: 1em;
+  padding: 1.75em;
+  width: 22em;
+  max-width: 90%;
+}
+
+.confirm-box h3 {
+  font-size: 1.1em;
+  color: #2b2b2b;
+  margin-bottom: 0.5em;
+}
+
+.confirm-box p {
+  font-size: 0.9em;
+  color: #6a6a6a;
+  margin-bottom: 1.5em;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75em;
+}
+
+.confirm-cancel-btn {
+  padding: 0.6em 1.2em;
+  border: 1px solid #d8d5cd;
+  border-radius: 0.6em;
+  background-color: transparent;
+  color: #4a4a4a;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.confirm-ok-btn {
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 0.6em;
+  background-color: #534ab7;
+  color: #ffffff;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -1,0 +1,199 @@
+/* register.css - welcome/signup page for focusly */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.register-body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #faf7f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 1em;
+}
+
+.register-page {
+  width: 100%;
+  max-width: 26em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* brand block up top - icon, name, tagline */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.brand-icon {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: #534ab7;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  margin-bottom: 0.75em;
+}
+
+.brand-name {
+  font-size: 1.8em;
+  color: #2b2b2b;
+  margin-bottom: 0.25em;
+}
+
+.brand-tagline {
+  font-size: 0.95em;
+  color: #7a7a7a;
+}
+
+/* the actual signup card */
+.registration-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.06);
+}
+
+.registration-card h2 {
+  font-size: 1.4em;
+  color: #2b2b2b;
+  margin-bottom: 0.35em;
+}
+
+.register-sub {
+  font-size: 0.9em;
+  color: #8a8a8a;
+  margin-bottom: 1.75em;
+}
+
+/* inputs */
+.input-field {
+  margin-bottom: 1.25em;
+}
+
+.input-field label {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 0.5em;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e0da;
+  border-radius: 0.6em;
+  padding: 0.75em 1em;
+  background-color: #faf9f6;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.input-wrap:focus-within {
+  border-color: #534ab7;
+  background-color: #ffffff;
+}
+
+.input-wrap i {
+  color: #a8a4bd;
+  font-size: 0.9em;
+  margin-right: 0.75em;
+}
+
+.input-wrap input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95em;
+  color: #2b2b2b;
+}
+
+.input-wrap input::placeholder {
+  color: #b8b5ac;
+}
+
+/* error state - added to the input itself via JS */
+.input-wrap.error {
+  border-color: #d9534f;
+  background-color: #fdf2f2;
+}
+
+.field-error {
+  display: block;
+  font-size: 0.8em;
+  color: #d9534f;
+  margin-top: 0.4em;
+}
+
+.field-error.hidden {
+  display: none;
+}
+
+/* submit button */
+.submit-btn {
+  width: 100%;
+  padding: 0.85em;
+  margin-top: 0.5em;
+  border: none;
+  border-radius: 0.6em;
+  background-color: #534ab7;
+  color: #ffffff;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.submit-btn:hover {
+  background-color: #453d9c;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+.submit-btn i {
+  font-size: 0.85em;
+}
+
+.welcome-back-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1em;
+  padding: 2em;
+  box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.welcome-back-card h2 {
+  font-size: 1.4em;
+  color: #2b2b2b;
+  margin-bottom: 0.35em;
+}
+
+/* small screens */
+@media (max-width: 30em) {
+  .registration-card {
+    padding: 1.5em;
+  }
+}

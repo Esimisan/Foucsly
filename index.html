@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // only auto-skip to dashboard if fully signed in (user AND active session)
+      if (
+        localStorage.getItem("focusly-user") &&
+        localStorage.getItem("focusly-session")
+      ) {
+        window.location.replace("dashboard.html");
+      }
+    </script>
+    <link rel="stylesheet" href="style/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <title>Focusly - Welcome</title>
+  </head>
+
+  <body class="register-body">
+    <div class="register-page">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <h1 class="brand-name">Focusly</h1>
+        <p class="brand-tagline">Focus. Plan. Achieve</p>
+      </div>
+
+      <div class="registration-card">
+        <h2>Create your account</h2>
+        <p class="register-sub">Please Enter your details to get started</p>
+
+        <div class="input-field">
+          <label for="first-name">First Name</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input
+              type="text"
+              id="first-name"
+              placeholder="e.g, Oghogho"
+              autocomplete="given-name"
+            />
+          </div>
+          <span class="field-error hidden" id="err-first-name"
+            >Please enter your first name.</span
+          >
+        </div>
+
+        <div class="input-field">
+          <label for="last-name">Last Name</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input
+              id="last-name"
+              type="text"
+              placeholder="e.g. Nosa-Omorodion"
+              autocomplete="family-name"
+            />
+          </div>
+          <span class="field-error hidden" id="err-last-name"
+            >Please enter your last name.</span
+          >
+        </div>
+
+        <div class="input-field">
+          <label for="email">Email Address</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <span class="field-error hidden" id="err-email"
+            >Please enter a valid email address.</span
+          >
+        </div>
+
+        <button type="button" class="submit-btn" id="register-btn">
+          Get Started <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="welcome-back-card hidden" id="welcome-back-card">
+        <h2>Welcome back, <span id="welcome-back-name"></span></h2>
+        <p class="register-sub">Continue where you left off</p>
+        <button type="button" class="submit-btn" id="continue-btn">
+          Continue <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="script/index.js"></script>
+  </body>
+</html>

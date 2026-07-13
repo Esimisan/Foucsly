@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+    <link rel="stylesheet" href="style/settings.css" />
+    <link rel="stylesheet" href="style/modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="side-nav">
+      <p class="logo"><i class="fa-solid fa-bullseye"></i> Focusly</p>
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fa-solid fa-border-all"></i> DashBoard</a
+          >
+        </li>
+        <li>
+          <a href="tasks.html"
+            ><i class="fa-regular fa-square-check"></i> My Tasks</a
+          >
+        </li>
+        <li>
+          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+        </li>
+        <li>
+          <a href="focus.html"><i class="fa-solid fa-stopwatch"></i> Focus</a>
+        </li>
+        <li>
+          <a href="settings.html" class="active"
+            ><i class="fa-solid fa-gears"></i> Settings</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <main class="settings-main">
+      <h1 class="page-title">Settings</h1>
+
+      <!-- profile section -->
+      <section class="settings-card">
+        <h2>Profile</h2>
+        <p class="settings-card-sub">Update your name</p>
+
+        <div class="input-field">
+          <label for="settings-first-name">First Name</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="settings-first-name" />
+          </div>
+        </div>
+
+        <div class="input-field">
+          <label for="settings-last-name">Last Name</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="settings-last-name" />
+          </div>
+        </div>
+
+        <span class="profile-message hidden" id="profile-message"></span>
+
+        <button type="button" class="save-btn" id="save-profile-btn">
+          Save Changes
+        </button>
+      </section>
+
+      <!-- account / danger zone -->
+      <section class="settings-card danger-zone">
+        <h2>Account</h2>
+        <p class="settings-card-sub">Manage your session and data</p>
+
+        <div class="danger-row">
+          <div class="danger-row-text">
+            <p class="danger-row-title">Sign Out</p>
+            <p class="danger-row-desc">
+              You'll be logged out, but your data stays saved.
+            </p>
+          </div>
+          <button type="button" class="outline-btn" id="sign-out-btn">
+            Sign Out
+          </button>
+        </div>
+
+        <div class="danger-row">
+          <div class="danger-row-text">
+            <p class="danger-row-title">Clear All Data</p>
+            <p class="danger-row-desc">
+              Permanently deletes your tasks, goals, focus history and profile.
+            </p>
+          </div>
+          <button type="button" class="danger-btn" id="clear-data-btn">
+            Clear Data
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- reusable confirm popup - used for both sign out and clear data -->
+    <div class="confirm-overlay hidden" id="confirm-overlay">
+      <div class="confirm-box">
+        <h3 id="confirm-title"></h3>
+        <p id="confirm-message"></p>
+        <div class="confirm-actions">
+          <button
+            type="button"
+            class="confirm-cancel-btn"
+            id="confirm-cancel-btn"
+          >
+            Cancel
+          </button>
+          <button type="button" class="confirm-ok-btn" id="confirm-ok-btn">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/settings.js"></script>
+  </body>
+</html>

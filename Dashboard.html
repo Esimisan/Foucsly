@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if (!localStorage.getItem("focusly-user")) {
+        window.location.replace("index.html");
+      }
+    </script>
     <title>Dashboard</title>
     <link rel="stylesheet" href="style/dashboard.css" />
     <link rel="stylesheet" href="style/modal.css" />
@@ -13,7 +18,7 @@
   </head>
   <body>
     <div class="side-nav">
-      <p class="logo">Focusly</p>
+      <p class="logo"><i class="fa-solid fa-bullseye"></i> Focusly</p>
       <ul>
         <li>
           <a href="dashboard.html" class="active"
@@ -42,7 +47,7 @@
         <div class="dashboard-top-row">
           <div class="welcome">
             <!-- greeting text left as-is, per Misan's own setup -->
-            <p class="welcome-msg">Good Afternoon, Misan 👋</p>
+            <p class="welcome-msg js-welcome-message"></p>
             <p class="current-date js-current-date"></p>
           </div>
 

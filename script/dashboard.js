@@ -1,3 +1,20 @@
+function welcomeMessage() {
+  const welcomeMessageEl = document.querySelector(".js-welcome-message");
+
+  let user = JSON.parse(localStorage.getItem("focusly-user"));
+
+  if (welcomeMessageEl) {
+    if (user.isNew) {
+      welcomeMessageEl.textContent = `Welcome ${user.firstName} 👋`;
+
+      user.isNew = false;
+      localStorage.setItem("focusly-user", JSON.stringify(user));
+    } else {
+      welcomeMessageEl.textContent = `Welcome back ${user.firstName} 👋`;
+    }
+  }
+}
+
 function setCurrentDate() {
   const currentDate = document.querySelector(".js-current-date");
   if (!currentDate) return;
@@ -27,21 +44,6 @@ function setCurrentDate() {
   ];
   currentDate.textContent = `${weekdays[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 }
-
-/* ============================================================
-   DASHBOARD
-   IMPORTANT: modal.js (loaded before this file) already declares
-   `let todoTasks = []`, `let goals = []`, `let nextId = 1`. We do NOT
-   redeclare them here — same rule tasks.js and goals.js follow — we
-   just assign into them so modal.js's shared id counter stays correct.
-
-   modal.js also checks `typeof renderTaskList/renderGoalsList/
-   saveTasks/saveGoals === "function"` after creating an item. By
-   naming our functions exactly that, the existing "+" button on this
-   page starts actually persisting and refreshing the dashboard —
-   before this file, saveTasks/saveGoals didn't exist here at all, so
-   anything created from the dashboard was lost on refresh.
-   ============================================================ */
 
 let focusSessions = [];
 
@@ -391,7 +393,7 @@ function renderGoalsList() {
   renderTaskSnippets();
   renderGoalSnippets();
 }
-
+welcomeMessage();
 loadTasks();
 loadGoals();
 loadFocusSessions();
