@@ -1,3 +1,5 @@
+/* goals-progress.css */
+
 body {
   background-color: #faf7f0;
 }
@@ -275,4 +277,20 @@ body {
 .journey-empty {
   color: #9ca3af;
   font-size: 0.875em;
+}
+
+@media (max-width: 768px) {
+  .journey-page {
+    padding: 4.5em 1.2em 2em;
+  }
+
+  .journey-tabs {
+    flex-wrap: wrap;
+  }
+
+  .panel-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6em;
+  }
 }

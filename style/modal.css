@@ -332,3 +332,31 @@
 .plus-btn:hover {
   background: #453c9c;
 }
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1.5em 1.3em 1.6em;
+    max-width: 95%;
+  }
+
+  .type-btn-group,
+  .priority-btn-group,
+  .due-date-time-row {
+    flex-direction: column;
+  }
+
+  .time-input-wrap {
+    flex: 1; /* was a fixed 8.5em, needs to go full-width once stacked */
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .plus-btn {
+    bottom: 1.2em;
+    right: 1.2em;
+    width: 2.9em;
+    height: 2.9em;
+  }
+}

@@ -27,13 +27,11 @@ function loadTasks() {
     const highestId = todoTasks.reduce((max, t) => Math.max(max, t.id), 0);
     nextId = Math.max(nextId, highestId + 1);
   } else {
-    // no seed data — a brand new user just starts with an empty list
     todoTasks = [];
     nextId = 1;
   }
 }
 
-//checks if a task's due date/time has already passed
 function isTaskOverdue(task) {
   if (!task.dueDate) return false;
 

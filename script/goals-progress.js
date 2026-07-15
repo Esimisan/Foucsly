@@ -1,6 +1,6 @@
 let goals = [];
 
-// Reuse tip: reading an id out of the URL's query string (?id=3) is how
+//reading an id out of the URL's query string (?id=3) is how
 // you pass "which record am I looking at" between two separate pages.
 function getGoalIdFromUrl() {
   const params = new URLSearchParams(window.location.search);

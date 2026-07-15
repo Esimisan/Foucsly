@@ -103,3 +103,23 @@ body {
   text-align: right;
   flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .goal-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .goal-actions {
+    width: 100%;
+  }
+
+  .view-journey-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .goal-meta {
+    flex-wrap: wrap;
+  }
+}

@@ -18,6 +18,13 @@
     />
   </head>
   <body>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="open menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
     <div class="side-nav">
       <p class="logo"><i class="fa-solid fa-bullseye"></i> Focusly</p>
       <ul>
@@ -32,12 +39,12 @@
           >
         </li>
         <li>
-          <a href="goals.html"><i class="fa-solid fa-bullseye"></i> My Goals</a>
+          <a href="goals.html" class="active"
+            ><i class="fa-solid fa-bullseye"></i> My Goals</a
+          >
         </li>
         <li>
-          <a href="focus.html" class="active"
-            ><i class="fa-solid fa-stopwatch"></i> Focus</a
-          >
+          <a href="focus.html"><i class="fa-solid fa-stopwatch"></i> Focus</a>
         </li>
         <li>
           <a href="settings.html"><i class="fa-solid fa-gears"></i> Settings</a>
@@ -109,5 +116,6 @@
     </main>
 
     <script src="script/goals-progress.js"></script>
+    <script src="script/toggle-nav.js"></script>
   </body>
 </html>

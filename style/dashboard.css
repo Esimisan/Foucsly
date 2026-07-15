@@ -500,3 +500,100 @@ body {
 /* NOTE: .plus-btn now lives in modal.css (loaded after this file), since
    the "+" button is shared across every page and belongs with the modal
    it opens, not duplicated per-page. */
+
+/* ============================================================
+   RESPONSIVE — smaller screens
+   ============================================================ */
+
+/* hamburger button — hidden by default, only shown inside the media query.
+   it's 3 spans (the "lines") stacked with flexbox */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 210;
+  width: 2.6em;
+  height: 2.6em;
+  background: #ffffff;
+  border: 1px solid #edeef0;
+  border-radius: 0.6em;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+}
+
+.hamburger-line {
+  width: 1.3em;
+  height: 2px;
+  background: #534ab7;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* when JS adds .active, the 3 lines rotate/fade into an X */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(0.37em) rotate(45deg);
+}
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: translateY(-0.37em) rotate(-45deg);
+}
+
+/* dark backdrop behind the open nav, tap it to close */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.4);
+  z-index: 150;
+}
+
+.nav-backdrop.active {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 200;
+  }
+
+  .side-nav.nav-open {
+    transform: translateX(0);
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+    padding: 4.5em 1.2em 2em; /* top padding clears the fixed hamburger btn */
+  }
+
+  .reminder-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-tasks {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-search-wrap {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .reminder-cards {
+    grid-template-columns: 1fr;
+  }
+}

@@ -20,7 +20,6 @@ function loadGoals() {
   if (stored) {
     goals = JSON.parse(stored);
 
-    // same trick as loadTasks() — make sure new goals never reuse an old id, even if the user deletes all goals and starts over.
     const highestId = goals.reduce((max, g) => Math.max(max, g.id), 0);
     nextId = Math.max(nextId, highestId + 1);
   } else {
