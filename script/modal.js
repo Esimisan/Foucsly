@@ -18,6 +18,14 @@ const outsideClick = (event) => {
   }
 };
 
+// custom categories the user has created
+let customCategories =
+  JSON.parse(localStorage.getItem("customCategories")) || [];
+
+function saveCustomCategories() {
+  localStorage.setItem("customCategories", JSON.stringify(customCategories));
+}
+
 let todoTasks = [];
 let goals = [];
 let nextId = 1;
@@ -161,6 +169,50 @@ function resetForm() {
   editingType = null;
   createTaskbtn.textContent = "Create Item";
 }
+
+// this is the same clear-then-rebuild pattern as renderMilestoneInputs wipe anything we previously injected, then loop and recreate from the source array
+function renderCustomCategories() {
+  // remove any custom options we previously added (tagged below with data-custom)
+  categoryInput
+    .querySelectorAll('option[data-custom="true"]')
+    .forEach((opt) => opt.remove());
+
+  const createOptionEl = categoryInput.querySelector(
+    'option[value="create-option"]',
+  );
+
+  customCategories.forEach((category) => {
+    const opt = document.createElement("option");
+    opt.value = category;
+    opt.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    opt.dataset.custom = "true"; // marks it so we know it's safe to wipe/rebuild
+    categoryInput.insertBefore(opt, createOptionEl);
+  });
+}
+
+renderCustomCategories(); // run once on page load so saved categories show up immediately
+
+categoryInput.addEventListener("change", () => {
+  if (categoryInput.value === "create-option") {
+    const customCategory = prompt("Name your new category:");
+
+    if (!customCategory || customCategory.trim() === "") {
+      categoryInput.value = "work";
+      return;
+    }
+
+    const newCategoryValue = customCategory.toLowerCase().trim();
+
+    // avoid duplicates - if it already exists, just select it instead of adding again
+    if (!customCategories.includes(newCategoryValue)) {
+      customCategories.push(newCategoryValue);
+      saveCustomCategories();
+      renderCustomCategories();
+    }
+
+    categoryInput.value = newCategoryValue;
+  }
+});
 
 function createItem() {
   const title = titleInput.value;
